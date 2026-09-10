@@ -17,6 +17,7 @@ import {
   Globe
 } from 'lucide-react';
 import { CandidateProfile, EvidenceNode } from '@/lib/types';
+import { ExpandableCard } from './ui/ExpandableCard';
 
 interface EvidenceGraphModuleProps {
   candidates: CandidateProfile[];
@@ -206,52 +207,22 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
           </span>
         </div>
 
-        {/* Evidence Graph Nodes Grid */}
+        {/* Evidence Graph Nodes Grid with Expandable Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredNodes.map((node) => {
+          {filteredNodes.map((node, index) => {
             const badge = getCategoryBadge(node.category);
-            const BadgeIcon = badge.icon;
             return (
-              <div
+              <ExpandableCard
                 key={node.id}
-                className="bg-white border border-slate-200 hover:border-slate-300 p-5 rounded-2xl space-y-3 transition-all flex flex-col justify-between shadow-2xs"
-              >
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`inline-flex items-center space-x-1.5 text-[10px] font-mono font-bold px-2.5 py-1 rounded-md border ${badge.color}`}>
-                      <BadgeIcon className="w-3 h-3" />
-                      <span>{badge.label}</span>
-                    </span>
-                    <span className="text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
-                      {node.confidence}% Confidence
-                    </span>
-                  </div>
-
-                  <h4 className="text-sm font-bold text-slate-900 leading-snug font-display">
-                    {node.label}
-                  </h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {node.detail}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                  <span className="truncate max-w-[240px] text-slate-400 font-mono text-[10px]">
-                    Context: {node.sourceContext}
-                  </span>
-                  {node.verifiedProofUrl && (
-                    <a
-                      href={node.verifiedProofUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-indigo-600 hover:text-indigo-800 font-bold inline-flex items-center space-x-1 shrink-0"
-                    >
-                      <span>Verify Proof</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
-                </div>
-              </div>
+                title={node.label}
+                badge={badge}
+                confidence={node.confidence}
+                summary={node.detail}
+                detail={node.detail}
+                sourceContext={node.sourceContext}
+                verifiedProofUrl={node.verifiedProofUrl}
+                defaultExpanded={index === 0}
+              />
             );
           })}
         </div>

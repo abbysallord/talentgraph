@@ -15,6 +15,7 @@ import {
   RotateCcw
 } from 'lucide-react';
 import { CandidateProfile, Requisition, EvaluationRationale } from '@/lib/types';
+import { RadarChart, RadarDimension } from './ui/RadarChart';
 
 interface ReasoningScorerModuleProps {
   candidate: CandidateProfile;
@@ -137,37 +138,30 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
               </div>
             </div>
 
-            {/* Dimension Breakdown Bars */}
-            <div className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-5 shadow-xs">
-              <div className="flex items-center justify-between">
+            {/* Visual Competency Radar Chart */}
+            <div className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 md:p-8 flex flex-col items-center justify-between shadow-xs">
+              <div className="w-full flex items-center justify-between mb-2">
                 <h3 className="text-xs font-bold uppercase text-slate-500 tracking-wider flex items-center space-x-2">
                   <BarChart3 className="w-4 h-4 text-indigo-600" />
-                  <span>Competency Dimension Breakdown</span>
+                  <span>5-Dimension Competency Radar Polygon</span>
                 </h3>
-                <span className="text-[11px] font-mono text-slate-400 font-semibold">Evaluated by LLM Reasoning</span>
+                <span className="text-[11px] font-mono text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 font-bold">
+                  Bklit Signal
+                </span>
               </div>
 
-              <div className="space-y-4 pt-1">
-                {[
-                  { label: 'Core Technical Stack Fit', score: evaluation.dimensionScores.coreSkills, color: 'bg-indigo-600' },
-                  { label: 'Architectural & Systems Depth', score: evaluation.dimensionScores.architecturalDepth, color: 'bg-blue-600' },
-                  { label: 'Production Velocity & Shipped Work', score: evaluation.dimensionScores.productionVelocity, color: 'bg-emerald-600' },
-                  { label: 'Domain & Problem-Solving Mastery', score: evaluation.dimensionScores.domainProblemSolving, color: 'bg-purple-600' },
-                ].map((dim, idx) => (
-                  <div key={idx} className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-slate-700">{dim.label}</span>
-                      <span className="text-slate-900 font-mono font-bold">{dim.score}%</span>
-                    </div>
-                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden border border-slate-200">
-                      <div
-                        className={`h-full ${dim.color} transition-all duration-700 rounded-full`}
-                        style={{ width: `${dim.score}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {/* Live Radar Visualization */}
+              <RadarChart
+                data={[
+                  { axis: 'Core Stack', value: evaluation.dimensionScores.coreSkills, benchmark: 75 },
+                  { axis: 'Architecture', value: evaluation.dimensionScores.architecturalDepth, benchmark: 80 },
+                  { axis: 'Concurrency', value: Math.round((evaluation.dimensionScores.architecturalDepth + evaluation.dimensionScores.coreSkills) / 2), benchmark: 70 },
+                  { axis: 'Velocity', value: evaluation.dimensionScores.productionVelocity, benchmark: 75 },
+                  { axis: 'Domain Mastery', value: evaluation.dimensionScores.domainProblemSolving, benchmark: 70 },
+                ]}
+                candidateName={candidate.name}
+                size={300}
+              />
             </div>
           </div>
 
