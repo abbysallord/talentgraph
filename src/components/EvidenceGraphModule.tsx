@@ -231,10 +231,9 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                   badge={badge}
                   confidence={node.confidence}
                   summary={node.detail}
-                  detail={node.detail}
                   sourceContext={node.sourceContext}
                   verifiedProofUrl={node.verifiedProofUrl}
-                  defaultExpanded={index === 0}
+                  defaultExpanded={false}
                 />
               );
             })}
