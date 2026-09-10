@@ -198,7 +198,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
                 <div key={idx} className="flex items-center justify-between text-zinc-700">
                   <span className="truncate pr-2 font-medium">{item.criterion || item.competency}</span>
                   <span className="font-mono text-[11px] font-bold text-zinc-900 shrink-0">
-                    {Math.round((item.weight ?? 0.25) * 100)}%
+                    {Math.round(item.weight > 1 ? item.weight : item.weight * 100)}%
                   </span>
                 </div>
               ))}

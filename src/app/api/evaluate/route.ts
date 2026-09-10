@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { askLLMJson } from '@/lib/groq';
 import { CandidateProfile, Requisition, EvaluationRationale } from '@/lib/types';
+import { recordInteractionLog } from '@/lib/audit';
+import { getCurrentUser } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -25,6 +27,9 @@ Respond in JSON with the exact following schema:
   "interviewWatchouts": ["Specific technical area to probe in interview to verify true authorship"]
 }`;
 
+    const mustHaves = Array.isArray(requisition.mustHaveSkills) ? requisition.mustHaveSkills.join(', ') : '';
+    const competencies = Array.isArray(requisition.architecturalCompetencies) ? requisition.architecturalCompetencies.join(', ') : '';
+
     const userPrompt = `Evaluate Candidate:
 Name: ${candidate.name}
 Role: ${candidate.role}
@@ -34,9 +39,9 @@ Resume Text: ${candidate.rawResumeText}
 
 Against Target Requisition:
 Title: ${requisition.title}
-Must-Haves: ${requisition.mustHaveSkills.join(', ')}
-Architectural Competencies: ${requisition.architecturalCompetencies.join(', ')}
-Evidence Rubric: ${JSON.stringify(requisition.evidenceRubric, null, 2)}`;
+Must-Haves: ${mustHaves}
+Architectural Competencies: ${competencies}
+Evidence Rubric: ${JSON.stringify(requisition.evidenceRubric || [], null, 2)}`;
 
     const fallback: EvaluationRationale = {
       candidateId: candidate.id,
@@ -76,6 +81,18 @@ Evidence Rubric: ${JSON.stringify(requisition.evidenceRubric, null, 2)}`;
       interviewWatchouts: result.interviewWatchouts ?? fallback.interviewWatchouts,
       evaluatedAt: new Date().toISOString()
     };
+
+    const user = await getCurrentUser();
+    await recordInteractionLog({
+      eventType: 'EVALUATION_RUN',
+      userId: user?.id,
+      candidateId: candidate.id,
+      details: {
+        overallFitScore: evaluation.overallFitScore,
+        requisitionTitle: requisition.title,
+        candidateName: candidate.name,
+      },
+    });
 
     return NextResponse.json(evaluation);
   } catch (error: any) {

@@ -6,6 +6,8 @@ import {
   ExternalLink
 } from 'lucide-react';
 
+import { CandidateProfile } from '@/lib/types';
+
 interface EvidenceNodeItem {
   id: string;
   label: string;
@@ -16,6 +18,14 @@ interface EvidenceNodeItem {
   x: number; // percentage 0-100
   y: number; // percentage 0-100
 }
+
+const defaultCoordinates = [
+  { x: 18, y: 28 },
+  { x: 82, y: 26 },
+  { x: 16, y: 74 },
+  { x: 80, y: 76 },
+  { x: 50, y: 88 },
+];
 
 const defaultNodes: EvidenceNodeItem[] = [
   {
@@ -70,10 +80,30 @@ const defaultNodes: EvidenceNodeItem[] = [
   },
 ];
 
-export const InteractiveEvidenceCanvas: React.FC = () => {
-  const [activeNodeId, setActiveNodeId] = useState<string>('raft');
+interface InteractiveEvidenceCanvasProps {
+  candidate?: CandidateProfile;
+}
 
-  const activeNode = defaultNodes.find((n) => n.id === activeNodeId) || defaultNodes[0];
+export const InteractiveEvidenceCanvas: React.FC<InteractiveEvidenceCanvasProps> = ({ candidate }) => {
+  const nodes: EvidenceNodeItem[] = candidate
+    ? candidate.evidenceGraph.slice(0, 5).map((node, index) => {
+        const coords = defaultCoordinates[index] || { x: 50, y: 50 };
+        return {
+          id: node.id,
+          label: node.label,
+          category: node.category,
+          metric: `${node.confidence}% Verified`,
+          detail: node.detail,
+          proofUrl: node.verifiedProofUrl || candidate.githubUrl || '#',
+          x: coords.x,
+          y: coords.y,
+        };
+      })
+    : defaultNodes;
+
+  const [activeNodeId, setActiveNodeId] = useState<string>(nodes[0]?.id || 'raft');
+
+  const activeNode = nodes.find((n) => n.id === activeNodeId) || nodes[0] || defaultNodes[0];
 
   return (
     <div className="relative w-full rounded-2xl bg-zinc-950 text-white p-6 sm:p-8 overflow-hidden shadow-2xl border border-zinc-800/80">
@@ -91,7 +121,7 @@ export const InteractiveEvidenceCanvas: React.FC = () => {
           </span>
         </div>
         <div className="flex items-center space-x-2 text-2xs font-mono text-zinc-400">
-          <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800">5 Verified Nodes</span>
+          <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800">{nodes.length} Verified Nodes</span>
           <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800">100% Deterministic</span>
         </div>
       </div>
@@ -111,7 +141,7 @@ export const InteractiveEvidenceCanvas: React.FC = () => {
             </linearGradient>
           </defs>
 
-          {defaultNodes.map((node) => {
+          {nodes.map((node) => {
             const isActive = node.id === activeNodeId;
             return (
               <line
@@ -138,12 +168,12 @@ export const InteractiveEvidenceCanvas: React.FC = () => {
             </div>
           </div>
           <span className="mt-2 text-2xs font-mono font-bold text-zinc-300 bg-zinc-900/90 px-2 py-0.5 rounded border border-zinc-800">
-            Dhanush S. H
+            {candidate ? candidate.name : 'Dhanush S. H'}
           </span>
         </div>
 
         {/* Satellite Nodes */}
-        {defaultNodes.map((node) => {
+        {nodes.map((node) => {
           const isActive = node.id === activeNodeId;
           return (
             <div

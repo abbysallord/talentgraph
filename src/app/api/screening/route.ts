@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { askLLMJson } from '@/lib/groq';
 import { CandidateProfile, Requisition, AdaptiveQuestion } from '@/lib/types';
+import { recordInteractionLog } from '@/lib/audit';
+import { getCurrentUser } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -30,13 +32,16 @@ Respond in JSON with the exact following schema:
   ]
 }`;
 
+    const mustHaves = Array.isArray(requisition.mustHaveSkills) ? requisition.mustHaveSkills.join(', ') : '';
+    const competencies = Array.isArray(requisition.architecturalCompetencies) ? requisition.architecturalCompetencies.join(', ') : '';
+
     const userPrompt = `Candidate Evidence Graph:
 ${JSON.stringify(candidate.evidenceGraph, null, 2)}
 
 Target Role Requisition:
 Title: ${requisition.title}
-Must-Haves: ${requisition.mustHaveSkills.join(', ')}
-Architectural Competencies: ${requisition.architecturalCompetencies.join(', ')}`;
+Must-Haves: ${mustHaves}
+Architectural Competencies: ${competencies}`;
 
     const fallback = {
       questions: [
@@ -80,8 +85,21 @@ Architectural Competencies: ${requisition.architecturalCompetencies.join(', ')}`
     };
 
     const result = await askLLMJson<{ questions: AdaptiveQuestion[] }>(systemPrompt, userPrompt, fallback);
+    const questions = result.questions || fallback.questions;
 
-    return NextResponse.json(result.questions || fallback.questions);
+    const user = await getCurrentUser();
+    await recordInteractionLog({
+      eventType: 'SCREENING_GENERATED',
+      userId: user?.id,
+      candidateId: candidate.id,
+      details: {
+        probesCount: questions.length,
+        candidateName: candidate.name,
+        requisitionTitle: requisition.title,
+      },
+    });
+
+    return NextResponse.json(questions);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

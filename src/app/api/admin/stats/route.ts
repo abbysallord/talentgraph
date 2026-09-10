@@ -77,16 +77,24 @@ export async function GET() {
       },
       stageCounts,
       recommendationCounts,
-      recentLogs: recentLogs.map((log) => ({
-        id: log.id,
-        eventType: log.eventType,
-        timestamp: log.timestamp,
-        userName: log.user?.name || "Autonomous Pipeline",
-        userEmail: log.user?.email || "system@talentgraph.io",
-        candidateName: log.candidate?.name || null,
-        candidateRole: log.candidate?.role || null,
-        details: JSON.parse(log.details || "{}"),
-      })),
+      recentLogs: recentLogs.map((log) => {
+        let details = {};
+        try {
+          details = JSON.parse(log.details || "{}");
+        } catch {
+          details = {};
+        }
+        return {
+          id: log.id,
+          eventType: log.eventType,
+          timestamp: log.timestamp,
+          userName: log.user?.name || "Autonomous Pipeline",
+          userEmail: log.user?.email || "system@talentgraph.io",
+          candidateName: log.candidate?.name || null,
+          candidateRole: log.candidate?.role || null,
+          details,
+        };
+      }),
     });
   } catch (error: any) {
     console.error("Admin stats error:", error);

@@ -186,7 +186,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
       {viewMode === 'mesh' ? (
         <div className="double-bezel-outer">
           <div className="double-bezel-inner overflow-hidden">
-            <InteractiveEvidenceCanvas />
+            <InteractiveEvidenceCanvas candidate={selectedCandidate} />
           </div>
         </div>
       ) : (

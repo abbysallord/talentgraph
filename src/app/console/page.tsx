@@ -40,7 +40,7 @@ export default function ConsolePage() {
   const [demoBannerMessage, setDemoBannerMessage] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
 
-  // Check auth session on mount
+  // Check auth session and action=demo query parameter on mount
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -54,6 +54,13 @@ export default function ConsolePage() {
       }
     }
     checkAuth();
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('action') === 'demo') {
+        handleRunDemoWalkthrough();
+      }
+    }
   }, []);
 
   const [talentMemory, setTalentMemory] = useState<
@@ -83,13 +90,19 @@ export default function ConsolePage() {
     },
   ]);
 
+  const handleSelectCandidate = (cand: CandidateProfile) => {
+    setSelectedCandidate(cand);
+    const existing = talentMemory.find((m) => m.candidate.id === cand.id);
+    setCurrentSynthesis(existing ? existing.synthesis : null);
+  };
+
   const handleRequisitionCreated = (newReq: Requisition) => {
     setRequisitions([newReq, ...requisitions]);
     setSelectedRequisition(newReq);
     setActiveTab('evidence');
   };
 
-  const handleSaveToTalentMemory = (synthesis: InterviewSynthesis) => {
+  const handleSaveToTalentMemory = async (synthesis: InterviewSynthesis) => {
     setTalentMemory((prev) => [
       {
         candidate: selectedCandidate,
@@ -98,6 +111,22 @@ export default function ConsolePage() {
       },
       ...prev,
     ]);
+
+    // Persist approval decision and stage transition to SQLite WAL database
+    try {
+      await fetch('/api/candidates', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          candidateId: selectedCandidate.id,
+          stage: 'OFFER',
+          status: 'APPROVED',
+          recruiterNotes: synthesis.recruiterSignoff?.reviewerNotes || 'Approved by Hiring Team. Verified code proofs.',
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to sync candidate state to SQLite:', err);
+    }
   };
 
   const handleRunDemoWalkthrough = async () => {
@@ -127,7 +156,29 @@ export default function ConsolePage() {
   };
 
   const handleQuickSynthesis = () => {
-    setCurrentSynthesis(talentMemory[0].synthesis);
+    const existing = talentMemory.find((m) => m.candidate.id === selectedCandidate.id);
+    if (existing) {
+      setCurrentSynthesis(existing.synthesis);
+    } else {
+      setCurrentSynthesis({
+        candidateId: selectedCandidate.id,
+        requisitionId: selectedRequisition.id,
+        overallScore: 88,
+        recommendation: 'STRONG_HIRE',
+        executiveSummary: `${selectedCandidate.name} showcases demonstrated code authorship and architecture across verified repositories. Recommended for immediate fast-track evaluation.`,
+        dimensionBreakdown: {
+          technicalExecution: 90,
+          systemArchitecture: 88,
+          communicationClarity: 85,
+          builderOwnership: 92,
+        },
+        recruiterSignoff: {
+          approved: true,
+          reviewerNotes: 'Benchmark dossier synthesized.',
+          timestamp: new Date().toISOString(),
+        },
+      });
+    }
   };
 
   return (
@@ -200,7 +251,7 @@ export default function ConsolePage() {
                 <EvidenceGraphModule
                   candidates={candidates}
                   selectedCandidate={selectedCandidate}
-                  setSelectedCandidate={setSelectedCandidate}
+                  setSelectedCandidate={handleSelectCandidate}
                   onProceedToScoring={() => setActiveTab('scoring')}
                 />
               )}
@@ -240,7 +291,7 @@ export default function ConsolePage() {
                   memoryRecords={talentMemory}
                   activeRequisition={selectedRequisition}
                   onSelectCandidateForRole={(cand) => {
-                    setSelectedCandidate(cand);
+                    handleSelectCandidate(cand);
                     setActiveTab('evidence');
                   }}
                 />

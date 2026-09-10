@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { askLLMJson } from '@/lib/groq';
 import { CandidateProfile, Requisition, InterviewSynthesis } from '@/lib/types';
+import { recordInteractionLog } from '@/lib/audit';
+import { getCurrentUser } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -66,6 +68,19 @@ ${JSON.stringify(qaResponses, null, 2)}`;
         reviewerNotes: 'Pending final human signoff'
       }
     };
+
+    const user = await getCurrentUser();
+    await recordInteractionLog({
+      eventType: 'STAGE_TRANSITION',
+      userId: user?.id,
+      candidateId: candidate.id,
+      details: {
+        newStage: 'SYNTHESIS',
+        recommendation: synthesis.recommendation,
+        overallScore: synthesis.overallScore,
+        candidateName: candidate.name,
+      },
+    });
 
     return NextResponse.json(synthesis);
   } catch (error: any) {

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { askLLMJson } from '@/lib/groq';
 import { Requisition } from '@/lib/types';
+import { recordInteractionLog } from '@/lib/audit';
+import { getCurrentUser } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -61,6 +63,17 @@ Respond in JSON with the exact following schema:
       createdAt: new Date().toISOString().split('T')[0],
       status: 'active'
     };
+
+    const user = await getCurrentUser();
+    await recordInteractionLog({
+      eventType: 'REQUISITION_CREATED',
+      userId: user?.id,
+      details: {
+        requisitionId: fullRequisition.id,
+        title: fullRequisition.title,
+        seniority: fullRequisition.seniority,
+      },
+    });
 
     return NextResponse.json(fullRequisition);
   } catch (error: any) {
