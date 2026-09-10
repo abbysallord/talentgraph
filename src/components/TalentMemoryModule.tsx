@@ -3,17 +3,10 @@
 import React, { useState } from 'react';
 import { 
   Database, 
-  RotateCcw, 
   Search, 
-  ExternalLink, 
-  Calendar, 
-  CheckCircle2, 
-  FileText, 
-  UserCheck, 
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  BookmarkCheck
+  BookmarkCheck, 
+  ArrowRight, 
+  ShieldCheck 
 } from 'lucide-react';
 import { CandidateProfile, Requisition, InterviewSynthesis } from '@/lib/types';
 
@@ -44,109 +37,100 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
   );
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5">
       {/* Header Banner */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
-              <Database className="w-3.5 h-3.5" />
-              <span>Longitudinal Talent Intelligence</span>
+      <div className="bg-white border border-zinc-200/80 rounded-2xl p-5 shadow-2xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-lg bg-zinc-950 text-white flex items-center justify-center">
+              <Database className="w-4 h-4" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
-              Cross-Requisition Talent Memory Vault
-            </h2>
-            <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
-              Never lose track of exceptional technical talent. Candidate intelligence, code verifications, and interview notes persist across company openings, re-surfacing top builders as new technical needs emerge.
-            </p>
+            <div>
+              <h2 className="text-base font-bold text-zinc-950 font-display">
+                Longitudinal Talent Memory
+              </h2>
+              <span className="text-2xs font-mono text-zinc-500">
+                Persistent candidate intelligence and verified proofs across openings
+              </span>
+            </div>
           </div>
 
-          <div className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200 shrink-0 self-start md:self-auto">
-            {memoryRecords.length} Retained Engineering Records
-          </div>
+          <span className="text-2xs font-mono text-zinc-600 bg-zinc-100 px-3 py-1 rounded-md border border-zinc-200 self-start sm:self-auto">
+            {memoryRecords.length} Retained Records
+          </span>
         </div>
 
         {/* Search Input Bar */}
         <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+          <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-3" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search talent vault by candidate name, architecture keyword, or project proof..."
-            className="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-11 pr-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 focus:outline-none leading-relaxed transition-all font-medium"
+            placeholder="Search vault by builder name, systems architecture, or verified proof..."
+            className="w-full bg-zinc-50 border border-zinc-200 rounded-xl pl-10 pr-4 py-2 text-xs text-zinc-900 placeholder:text-zinc-400 focus:bg-white focus:border-zinc-400 focus:outline-none transition-all font-medium"
           />
         </div>
       </div>
 
       {/* Memory Records List */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {filtered.length === 0 ? (
-          <div className="bg-white border border-slate-200 rounded-3xl p-16 text-center space-y-3 shadow-xs">
-            <BookmarkCheck className="w-10 h-10 text-slate-400 mx-auto" />
-            <h3 className="text-base font-bold text-slate-900 font-display">No Matching Records in Vault</h3>
-            <p className="text-xs text-slate-500 max-w-md mx-auto">
-              No talent profiles match &quot;{searchTerm}&quot;. Save evaluations from Step 5 to populate the permanent talent intelligence datastore.
+          <div className="bg-white border border-zinc-200/80 rounded-2xl p-12 text-center space-y-2 shadow-2xs">
+            <BookmarkCheck className="w-8 h-8 text-zinc-400 mx-auto" />
+            <h3 className="text-xs font-bold text-zinc-900 font-display">No Matching Records</h3>
+            <p className="text-2xs text-zinc-500 max-w-sm mx-auto">
+              No profiles match &quot;{searchTerm}&quot;. Save evaluations to populate this vault.
             </p>
           </div>
         ) : (
           filtered.map((rec, idx) => (
             <div
               key={idx}
-              className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 hover:border-slate-300 transition-all shadow-xs"
+              className="bg-white border border-zinc-200/80 rounded-2xl p-4 sm:p-5 space-y-4 hover:border-zinc-300 transition-all shadow-2xs"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-extrabold text-lg flex items-center justify-center shadow-md shadow-emerald-600/20 shrink-0 font-display">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-zinc-100">
+                <div className="flex items-center space-x-3">
+                  <div className="w-9 h-9 rounded-xl bg-zinc-950 text-white font-bold text-sm flex items-center justify-center font-display">
                     {rec.candidate.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900 font-display">{rec.candidate.name}</h3>
-                    <p className="text-xs text-slate-500">
-                      {rec.candidate.role} • {rec.candidate.education}
+                    <div className="flex items-center space-x-2">
+                      <h3 className="text-sm font-bold text-zinc-950 font-display">
+                        {rec.candidate.name}
+                      </h3>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200">
+                        {rec.synthesis.overallScore}% Fit
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-500 mt-0.5">
+                      {rec.candidate.role} &bull; {rec.candidate.experienceYears}y exp
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-3">
-                  <span
-                    className={`text-xs font-mono font-bold px-3 py-1 rounded-xl border ${
-                      rec.synthesis.recommendation === 'STRONG_HIRE'
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                        : 'bg-teal-50 text-teal-800 border-teal-200'
-                    }`}
-                  >
-                    {rec.synthesis.recommendation}
-                  </span>
-
-                  <button
-                    onClick={() => onSelectCandidateForRole(rec.candidate)}
-                    className="bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-colors cursor-pointer shadow-2xs"
-                  >
-                    <span>Re-evaluate for Active Role</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
-                  </button>
-                </div>
+                <button
+                  onClick={() => onSelectCandidateForRole(rec.candidate)}
+                  className="bg-zinc-950 hover:bg-zinc-800 text-white font-semibold px-3 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition-all cursor-pointer shadow-xs self-start sm:self-auto"
+                >
+                  <span>Map to Current Role</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
 
-              {/* Executive Summary */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-2">
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
-                  Preserved Technical Synthesis
-                </span>
-                <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                  {rec.synthesis.executiveSummary}
-                </p>
+              <div className="bg-zinc-50 rounded-xl p-3 border border-zinc-200/80 text-xs text-zinc-700 leading-relaxed font-mono">
+                {rec.synthesis.executiveSummary}
               </div>
 
-              {/* Recruiter Reviewer Notes */}
               {rec.synthesis.recruiterSignoff && (
-                <div className="flex items-start space-x-3 text-xs text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <UserCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold text-slate-900">Recruiter Sign-Off Note: </span>
-                    <span className="font-medium">{rec.synthesis.recruiterSignoff.reviewerNotes}</span>
+                <div className="flex items-center justify-between text-2xs text-zinc-500 pt-1">
+                  <div className="flex items-center space-x-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-zinc-700" />
+                    <span>Approved by {rec.synthesis.recruiterSignoff.reviewerNotes}</span>
                   </div>
+                  <span className="font-mono">
+                    {rec.synthesis.recruiterSignoff.timestamp ? new Date(rec.synthesis.recruiterSignoff.timestamp).toLocaleDateString() : ''}
+                  </span>
                 </div>
               )}
             </div>

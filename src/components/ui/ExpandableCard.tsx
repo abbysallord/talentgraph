@@ -36,8 +36,8 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
     <div
       className={`rounded-2xl border transition-all duration-200 overflow-hidden bg-white ${
         isExpanded
-          ? 'border-emerald-300 shadow-md ring-1 ring-emerald-200'
-          : 'border-slate-200 hover:border-slate-300 shadow-2xs'
+          ? 'border-zinc-900 shadow-sm'
+          : 'border-zinc-200 hover:border-zinc-300 shadow-2xs'
       }`}
     >
       {/* Clickable Header */}
@@ -54,22 +54,22 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
               <BadgeIcon className="w-3 h-3" />
               <span>{badge.label}</span>
             </span>
-            <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+            <span className="text-[10px] font-mono font-bold text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200">
               {confidence}% Confidence
             </span>
           </div>
 
-          <h4 className="text-sm font-bold text-slate-900 font-display leading-snug">
+          <h4 className="text-sm font-bold text-zinc-900 font-display leading-snug">
             {title}
           </h4>
-          <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-zinc-600 line-clamp-2 leading-relaxed">
             {summary}
           </p>
         </div>
 
         <div
-          className={`p-1.5 rounded-lg bg-slate-50 text-slate-400 transition-transform duration-200 shrink-0 ${
-            isExpanded ? 'rotate-180 text-emerald-600 bg-emerald-50' : ''
+          className={`p-1.5 rounded-lg bg-zinc-50 text-zinc-400 transition-transform duration-200 shrink-0 ${
+            isExpanded ? 'rotate-180 text-zinc-900 bg-zinc-100' : ''
           }`}
         >
           <ChevronDown className="w-4 h-4" />
@@ -85,9 +85,9 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <div className="px-5 pb-5 pt-1 border-t border-slate-100 space-y-3 bg-slate-50/50 text-xs">
-              <div className="p-3.5 rounded-xl bg-white border border-slate-200 text-slate-700 leading-relaxed font-medium">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+            <div className="px-5 pb-5 pt-1 border-t border-zinc-100 space-y-3 bg-zinc-50/50 text-xs">
+              <div className="p-3.5 rounded-xl bg-white border border-zinc-200 text-zinc-700 leading-relaxed font-medium">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-1">
                   Architectural Proof &amp; Verification Rationale:
                 </span>
                 {detail}
@@ -95,7 +95,7 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
 
               <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
                 {sourceContext && (
-                  <span className="text-[11px] text-slate-500 font-mono">
+                  <span className="text-[11px] text-zinc-500 font-mono">
                     Artifact: {sourceContext}
                   </span>
                 )}

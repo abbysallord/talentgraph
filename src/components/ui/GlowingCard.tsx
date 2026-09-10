@@ -12,7 +12,7 @@ interface GlowingCardProps {
 export const GlowingCard: React.FC<GlowingCardProps> = ({
   children,
   className = '',
-  glowColor = 'rgba(5, 150, 105, 0.15)',
+  glowColor = 'rgba(0, 0, 0, 0.05)',
   onClick,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export const GlowingCard: React.FC<GlowingCardProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
-      className={`relative rounded-3xl border border-slate-200 bg-white p-6 transition-all duration-300 shadow-2xs hover:shadow-md hover:border-slate-300 overflow-hidden ${className}`}
+      className={`relative rounded-3xl border border-zinc-200 bg-white p-6 transition-all duration-300 shadow-2xs hover:shadow-md hover:border-zinc-300 overflow-hidden ${className}`}
     >
       {/* Interactive Radial Glow Follower */}
       {isHovered && (

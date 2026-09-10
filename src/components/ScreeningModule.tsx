@@ -4,16 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   HelpCircle, 
   Sparkles, 
-  Send, 
-  CheckCircle, 
-  AlertCircle, 
-  Layers, 
-  Code,
-  ArrowRight,
-  Lightbulb,
-  CheckCircle2,
-  FileCheck2,
-  Cpu,
+  ArrowRight, 
+  Lightbulb, 
   RotateCcw
 } from 'lucide-react';
 import { CandidateProfile, Requisition, AdaptiveQuestion, InterviewSynthesis } from '@/lib/types';
@@ -62,7 +54,6 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
     fetchQuestions();
   }, [candidate.id, requisition.id]);
 
-  // Autofill all answers for instant demo evaluation
   const handleAutofillAll = () => {
     const filled: { [k: string]: string } = {};
     questions.forEach((q, idx) => {
@@ -117,149 +108,100 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5">
       {/* Module Header */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Contextual Technical Interviewing</span>
+      <div className="bg-white border border-zinc-200/80 rounded-2xl p-5 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-lg bg-zinc-950 text-white flex items-center justify-center">
+              <HelpCircle className="w-4 h-4" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
-              Adaptive Screening Questions for {candidate.name}
-            </h2>
-            <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
-              Standard LeetCode quizzes fail to assess architecture tradeoffs. The AI engine synthesizes probing questions tailored specifically to {candidate.name}&apos;s verified projects, architecture decisions, and potential gaps.
-            </p>
+            <div>
+              <h2 className="text-base font-bold text-zinc-950 font-display">
+                Adaptive Technical Screening
+              </h2>
+              <span className="text-2xs font-mono text-zinc-500">
+                Tailored probes calibrated to candidate repositories and systems tradeoffs
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-3 shrink-0 self-start md:self-auto">
+          <div className="flex items-center space-x-2">
             <button
               onClick={handleAutofillAll}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-all flex items-center space-x-2 cursor-pointer shadow-2xs"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-zinc-200/70 text-zinc-800 border border-zinc-200 transition-colors flex items-center space-x-1.5 cursor-pointer shadow-2xs"
             >
-              <Lightbulb className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Autofill Sample Answers</span>
+              <Lightbulb className="w-3.5 h-3.5 text-zinc-600" />
+              <span>Autofill Answers</span>
             </button>
 
             <button
               onClick={handleSynthesize}
               disabled={isSubmitting || questions.length === 0}
-              className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer"
+              className="bg-zinc-950 hover:bg-zinc-800 disabled:opacity-50 text-white font-semibold px-4 py-1.5 rounded-lg text-xs flex items-center space-x-2 transition-all cursor-pointer shadow-xs"
             >
-              <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Final Recommendation'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Dossier'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
       </div>
 
       {isLoading ? (
-        <div className="bg-white border border-slate-200 rounded-3xl p-16 text-center space-y-4 shadow-xs">
-          <div className="w-10 h-10 border-3 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <h3 className="text-base font-bold text-slate-900 font-display">Synthesizing Adaptive Interview Questions...</h3>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
-            Examining code repositories and architectural proof-points to formulate deep technical probes.
+        <div className="bg-white border border-zinc-200/80 rounded-2xl p-12 text-center space-y-3 shadow-2xs">
+          <div className="w-8 h-8 border-2 border-zinc-900 border-t-transparent rounded-full animate-spin mx-auto" />
+          <div className="text-xs font-bold text-zinc-900 font-display">Formulating Probes...</div>
+          <p className="text-2xs text-zinc-400 font-mono">
+            Examining codebase architecture for targeted technical inquiry
           </p>
         </div>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {questions.map((q, idx) => (
             <div
               key={q.id}
-              className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-5 shadow-xs"
+              className="bg-white border border-zinc-200/80 rounded-2xl p-5 space-y-3 shadow-2xs"
             >
-              {/* Question Header & Context */}
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 border-b border-slate-100 pb-5">
-                <div className="space-y-1.5 max-w-3xl">
-                  <div className="flex items-center space-x-2.5">
-                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                      Question {idx + 1}
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-zinc-100 pb-3">
+                <div className="space-y-1 max-w-2xl">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200">
+                      Probe 0{idx + 1}
                     </span>
-                    <span className="text-xs text-slate-500 font-mono">
-                      Probing Target: {q.technicalConcept || q.projectTargeted}
+                    <span className="text-2xs text-zinc-400 font-mono">
+                      Target: {q.technicalConcept || q.projectTargeted}
                     </span>
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 leading-snug pt-1 font-display">
+                  <h3 className="text-sm font-bold text-zinc-950 leading-snug font-display">
                     {q.questionText}
                   </h3>
                 </div>
 
-                <div className="flex items-center space-x-2 shrink-0">
+                <div className="flex items-center space-x-1.5 shrink-0">
                   <button
                     onClick={() => loadSampleAnswer(q.id, 'exceptional')}
-                    className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors cursor-pointer shadow-2xs"
+                    className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-200 transition-colors cursor-pointer"
                   >
-                    Load Strong Answer
+                    Strong
                   </button>
                   <button
                     onClick={() => loadSampleAnswer(q.id, 'poor')}
-                    className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 transition-colors cursor-pointer shadow-2xs"
+                    className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-zinc-50 hover:bg-zinc-100 text-zinc-500 border border-zinc-200 transition-colors cursor-pointer"
                   >
-                    Load Weak Answer
+                    Weak
                   </button>
                 </div>
               </div>
 
-              {/* Rationale & Rubric */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                  <span className="font-bold text-slate-600 uppercase tracking-wider block text-[10px]">
-                    Why This Question Was Synthesized:
-                  </span>
-                  <p className="text-slate-700 leading-relaxed font-medium">
-                    {q.probingRationale}
-                  </p>
-                </div>
-
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                  <span className="font-bold text-emerald-700 uppercase tracking-wider block text-[10px]">
-                    Expected Evaluation Rubric:
-                  </span>
-                  <p className="text-slate-700 leading-relaxed font-medium">
-                    {typeof q.evaluationRubric === 'object' && q.evaluationRubric !== null
-                      ? `Exceptional: ${q.evaluationRubric.exceptional}`
-                      : String(q.evaluationRubric)}
-                  </p>
-                </div>
-              </div>
-
-              {/* Response Box */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase text-slate-500 tracking-wider block">
-                  Candidate Spoken / Written Response:
-                </label>
-                <textarea
-                  rows={4}
-                  value={answers[q.id] || ''}
-                  onChange={(e) =>
-                    setAnswers({
-                      ...answers,
-                      [q.id]: e.target.value,
-                    })
-                  }
-                  placeholder="Candidate verbal or coding response will be recorded here..."
-                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 focus:outline-none leading-relaxed transition-all font-medium"
-                />
-              </div>
+              <textarea
+                value={answers[q.id] || ''}
+                onChange={(e) => setAnswers({ ...answers, [q.id]: e.target.value })}
+                placeholder="Candidate verbal or written response..."
+                rows={3}
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-xs text-zinc-800 placeholder:text-zinc-400 focus:bg-white focus:border-zinc-400 focus:outline-none transition-all resize-none font-mono"
+              />
             </div>
           ))}
-
-          {/* Bottom Action Ribbon */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
-            <span className="text-xs text-slate-600 font-medium">
-              {Object.values(answers).filter((a) => a.trim().length > 0).length} of {questions.length} responses captured.
-            </span>
-            <button
-              onClick={handleSynthesize}
-              disabled={isSubmitting || questions.length === 0}
-              className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold px-6 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer"
-            >
-              <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Final Recommendation'}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
       )}
     </div>

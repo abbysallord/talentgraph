@@ -76,7 +76,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
                 })
                 .join(' ')}
               fill="none"
-              stroke="#e2e8f0"
+              stroke="#e4e4e7"
               strokeWidth={1}
               strokeDasharray={lvlIdx === levels.length - 1 ? 'none' : '2 3'}
             />
@@ -94,7 +94,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
                 y1={center}
                 x2={x}
                 y2={y}
-                stroke="#e2e8f0"
+                stroke="#e4e4e7"
                 strokeWidth={1}
               />
             );
@@ -103,8 +103,8 @@ export const RadarChart: React.FC<RadarChartProps> = ({
           {/* Role Baseline Overlay (Subtle Slate Polygon) */}
           <polygon
             points={baselinePoints}
-            fill="rgba(148, 163, 184, 0.12)"
-            stroke="#94a3b8"
+            fill="rgba(161, 161, 170, 0.10)"
+            stroke="#a1a1aa"
             strokeWidth={1.5}
             strokeDasharray="4 4"
           />
@@ -112,8 +112,8 @@ export const RadarChart: React.FC<RadarChartProps> = ({
           {/* Candidate Competency Polygon (Vibrant Emerald) */}
           <polygon
             points={candidatePoints}
-            fill="rgba(5, 150, 105, 0.22)"
-            stroke="#059669"
+            fill="rgba(37, 99, 235, 0.15)"
+            stroke="#2563eb"
             strokeWidth={2.5}
             className="transition-all duration-500 ease-out"
           />
@@ -130,7 +130,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
                   cy={y}
                   r={isHovered ? 6 : 4}
                   fill="#ffffff"
-                  stroke="#059669"
+                  stroke="#2563eb"
                   strokeWidth={2.5}
                   className="transition-all duration-200"
                 />
@@ -154,7 +154,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
                 textAnchor={Math.abs(Math.cos(angle)) < 0.1 ? 'middle' : Math.cos(angle) > 0 ? 'start' : 'end'}
                 dominantBaseline="central"
                 className={`text-[11px] font-bold tracking-tight transition-colors ${
-                  isHovered ? 'fill-emerald-600 font-extrabold' : 'fill-slate-600 font-medium'
+                  isHovered ? 'fill-blue-600 font-extrabold' : 'fill-zinc-600 font-medium'
                 }`}
               >
                 {d.axis} ({d.value}%)
@@ -165,10 +165,10 @@ export const RadarChart: React.FC<RadarChartProps> = ({
 
         {/* Dynamic Tooltip on Node Hover */}
         {hoveredIndex !== null && (
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-xl shadow-lg border border-slate-700 pointer-events-none z-20 flex items-center space-x-2">
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-zinc-950 text-white text-xs px-3 py-1.5 rounded-xl shadow-lg border border-zinc-800 pointer-events-none z-20 flex items-center space-x-2">
             <span className="font-bold">{data[hoveredIndex].axis}:</span>
-            <span className="text-emerald-300 font-mono font-bold">{data[hoveredIndex].value}%</span>
-            <span className="text-slate-400 text-2xs">(Benchmark: {data[hoveredIndex].benchmark ?? 75}%)</span>
+            <span className="text-sky-300 font-mono font-bold">{data[hoveredIndex].value}%</span>
+            <span className="text-zinc-400 text-2xs">(Benchmark: {data[hoveredIndex].benchmark ?? 75}%)</span>
           </div>
         )}
       </div>
@@ -176,12 +176,12 @@ export const RadarChart: React.FC<RadarChartProps> = ({
       {/* Chart Legend */}
       <div className="flex items-center space-x-6 mt-4 text-xs">
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-md bg-emerald-600" />
-          <span className="font-bold text-slate-800">{candidateName} Signals</span>
+          <div className="w-3 h-3 rounded-md bg-blue-600" />
+          <span className="font-bold text-zinc-800">{candidateName} Signals</span>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-0.5 border-b border-dashed border-slate-400" />
-          <span className="text-slate-500 font-medium">Requisition Baseline (75%)</span>
+          <div className="w-3 h-0.5 border-b border-dashed border-zinc-400" />
+          <span className="text-zinc-500 font-medium">Requisition Baseline (75%)</span>
         </div>
       </div>
     </div>
