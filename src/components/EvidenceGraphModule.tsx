@@ -64,9 +64,6 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
               <h2 className="text-base font-bold text-zinc-950 font-display">
                 Candidate Evidence Graph
               </h2>
-              <span className="text-2xs font-mono text-zinc-500">
-                Verified repositories, commit histories, and system architecture signals
-              </span>
             </div>
           </div>
 

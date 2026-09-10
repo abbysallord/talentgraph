@@ -49,9 +49,6 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
               <h2 className="text-base font-bold text-zinc-950 font-display">
                 Longitudinal Talent Memory
               </h2>
-              <span className="text-2xs font-mono text-zinc-500">
-                Persistent candidate intelligence and verified proofs across openings
-              </span>
             </div>
           </div>
 

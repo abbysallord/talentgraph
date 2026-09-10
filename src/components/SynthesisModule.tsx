@@ -97,9 +97,6 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
               <h2 className="text-base font-bold text-zinc-950 font-display">
                 Executive Synthesis &amp; Sovereign Gating
               </h2>
-              <span className="text-2xs font-mono text-zinc-500">
-                AI synthesizes the dossier; engineering managers retain absolute sign-off
-              </span>
             </div>
           </div>
 
@@ -173,10 +170,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
             className="w-full bg-white border border-zinc-200 rounded-lg p-2.5 text-xs text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:border-zinc-400 font-mono resize-none"
           />
 
-          <div className="flex items-center justify-between pt-1">
-            <span className="text-2xs text-zinc-500 font-mono">
-              Immutable audit log committed on sign-off
-            </span>
+          <div className="flex items-center justify-end pt-1">
             <button
               onClick={handleSave}
               disabled={isSaved}

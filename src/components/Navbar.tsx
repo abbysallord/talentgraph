@@ -107,27 +107,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Right Quick Actions */}
             <div className="flex items-center space-x-3">
               {/* Active Requisition Switcher */}
-              <div className="hidden xl:flex items-center space-x-2 bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-1.5">
-                <Briefcase className="w-3.5 h-3.5 text-zinc-400" />
-                <div className="text-xs">
-                  <span className="text-[9px] text-zinc-400 font-semibold block uppercase tracking-wider leading-none">
-                    Target Role:
-                  </span>
-                  <select
-                    value={selectedRequisition?.id}
-                    onChange={(e) => {
-                      const found = requisitions.find((r) => r.id === e.target.value);
-                      if (found) setSelectedRequisition(found);
-                    }}
-                    className="bg-transparent text-zinc-900 font-semibold text-xs focus:outline-none cursor-pointer max-w-[170px] truncate"
-                  >
-                    {requisitions.map((req) => (
-                      <option key={req.id} value={req.id} className="bg-white text-zinc-900">
-                        {req.title}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              {/* Active Requisition Switcher */}
+              <div className="hidden xl:flex items-center space-x-2 bg-zinc-50 border border-zinc-200 rounded-full px-3 py-1.5 text-xs">
+                <Briefcase className="w-3.5 h-3.5 text-zinc-500" />
+                <select
+                  value={selectedRequisition?.id}
+                  onChange={(e) => {
+                    const found = requisitions.find((r) => r.id === e.target.value);
+                    if (found) setSelectedRequisition(found);
+                  }}
+                  className="bg-transparent text-zinc-900 font-semibold text-xs focus:outline-none cursor-pointer max-w-[200px] truncate"
+                >
+                  {requisitions.map((req) => (
+                    <option key={req.id} value={req.id} className="bg-white text-zinc-900">
+                      {req.title}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* 1-Click Interactive Demo Button */}

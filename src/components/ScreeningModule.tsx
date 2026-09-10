@@ -120,9 +120,6 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
               <h2 className="text-base font-bold text-zinc-950 font-display">
                 Adaptive Technical Screening
               </h2>
-              <span className="text-2xs font-mono text-zinc-500">
-                Tailored probes calibrated to candidate repositories and systems tradeoffs
-              </span>
             </div>
           </div>
 
@@ -163,15 +160,10 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
               className="bg-white border border-zinc-200/80 rounded-2xl p-5 space-y-3 shadow-2xs"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-zinc-100 pb-3">
-                <div className="space-y-1 max-w-2xl">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200">
-                      Probe 0{idx + 1}
-                    </span>
-                    <span className="text-2xs text-zinc-400 font-mono">
-                      Target: {q.technicalConcept || q.projectTargeted}
-                    </span>
-                  </div>
+                <div className="space-y-1.5 max-w-2xl">
+                  <span className="inline-block text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200">
+                    Probe 0{idx + 1}
+                  </span>
                   <h3 className="text-sm font-bold text-zinc-950 leading-snug font-display">
                     {q.questionText}
                   </h3>

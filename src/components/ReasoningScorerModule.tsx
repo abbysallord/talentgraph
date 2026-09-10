@@ -72,9 +72,6 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
               <h2 className="text-base font-bold text-zinc-950 font-display">
                 Multi-Dimensional Reasoning Scorer
               </h2>
-              <span className="text-2xs font-mono text-zinc-500">
-                Evaluating {candidate.name} against {requisition.title}
-              </span>
             </div>
           </div>
 

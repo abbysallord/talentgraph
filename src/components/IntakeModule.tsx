@@ -81,9 +81,6 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
               <h2 className="text-base font-bold text-zinc-950 font-display">
                 Conversational Requisition Intake
               </h2>
-              <span className="text-2xs font-mono text-zinc-500">
-                Natural-language role definition with calibrated rubric extraction
-              </span>
             </div>
           </div>
 
@@ -101,10 +98,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
             rows={2}
             className="w-full bg-transparent text-zinc-900 placeholder:text-zinc-400 text-xs sm:text-sm p-2 focus:outline-none resize-none font-medium"
           />
-          <div className="flex items-center justify-between border-t border-zinc-200/60 pt-2 px-2">
-            <span className="text-2xs text-zinc-400 font-mono">
-              Extracts competencies, criteria &amp; calibrated weights
-            </span>
+          <div className="flex items-center justify-end border-t border-zinc-200/60 pt-2 px-2">
             <button
               onClick={() => handleGenerate(promptInput)}
               disabled={isLoading || !promptInput.trim()}
