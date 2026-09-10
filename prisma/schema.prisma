@@ -1,0 +1,117 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String               @id @default(cuid())
+  email           String               @unique
+  passwordHash    String
+  name            String
+  role            String               @default("RECRUITER") // RECRUITER, ADMIN, HIRING_MANAGER
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  resetTokens     PasswordResetToken[]
+  requisitions    Requisition[]
+  interactionLogs InteractionLog[]
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Requisition {
+  id                 String           @id @default(cuid())
+  title              String
+  department         String
+  seniority          String
+  targetCompensation String
+  summary            String
+  skills             String           // JSON string array
+  competencies       String           // JSON string array
+  rubric             String           // JSON string
+  status             String           @default("ACTIVE")
+  createdById        String?
+  createdBy          User?            @relation(fields: [createdById], references: [id])
+  evaluations        Evaluation[]
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+}
+
+model Candidate {
+  id                String             @id @default(cuid())
+  name              String
+  role              String
+  location          String
+  githubUrl         String?
+  portfolioUrl      String?
+  rawBio            String
+  education         String
+  yearsExperience   Int                @default(3)
+  stage             String             @default("EVALUATION")
+  status            String             @default("ACTIVE")
+  evidenceNodes     EvidenceNode[]
+  evaluations       Evaluation[]
+  screeningSessions ScreeningSession[]
+  interactionLogs   InteractionLog[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model EvidenceNode {
+  id                String    @id @default(cuid())
+  candidateId       String
+  candidate         Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  category          String    // Codebase, SystemArchitecture, Algorithmic, OpenSource, ProductionImpact
+  label             String
+  detail            String
+  confidence        Int       // 0 - 100
+  verifiedProofUrl  String?
+  createdAt         DateTime  @default(now())
+}
+
+model Evaluation {
+  id              String      @id @default(cuid())
+  candidateId     String
+  candidate       Candidate   @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  requisitionId   String
+  requisition     Requisition @relation(fields: [requisitionId], references: [id], onDelete: Cascade)
+  fitScore        Int
+  recommendation  String      // STRONG_HIRE, HIRE, LEAN_HIRE, HOLD, REJECT
+  dimensionScores String      // JSON string
+  writtenRationale String
+  strengths       String      // JSON array string
+  riskFactors     String      // JSON array string
+  createdAt       DateTime    @default(now())
+}
+
+model ScreeningSession {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  questions   String    // JSON string
+  status      String    @default("COMPLETED")
+  notes       String?
+  createdAt   DateTime  @default(now())
+}
+
+model InteractionLog {
+  id          String     @id @default(cuid())
+  eventType   String     // LOGIN, CANDIDATE_VIEWED, EVALUATION_RUN, SCREENING_GENERATED, STAGE_TRANSITION, RECRUITER_OVERRIDE, OFFER_GENERATED, PASSWORD_RESET
+  userId      String?
+  user        User?      @relation(fields: [userId], references: [id])
+  candidateId String?
+  candidate   Candidate? @relation(fields: [candidateId], references: [id])
+  details     String     // JSON string
+  timestamp   DateTime   @default(now())
+}

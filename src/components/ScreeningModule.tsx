@@ -119,36 +119,36 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
   return (
     <div className="space-y-8">
       {/* Module Header */}
-      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
               <HelpCircle className="w-3.5 h-3.5" />
               <span>Contextual Technical Interviewing</span>
             </div>
-            <h2 className="text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
               Adaptive Screening Questions for {candidate.name}
             </h2>
-            <p className="text-sm text-slate-400 mt-2 max-w-2xl leading-relaxed">
-              Standard LeetCode quizzes fail to assess architecture tradeoffs. Groq synthesizes probing questions tailored specifically to {candidate.name}&apos;s verified projects, architecture decisions, and potential gaps.
+            <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
+              Standard LeetCode quizzes fail to assess architecture tradeoffs. The AI engine synthesizes probing questions tailored specifically to {candidate.name}&apos;s verified projects, architecture decisions, and potential gaps.
             </p>
           </div>
 
-          <div className="flex items-center space-x-3 shrink-0">
+          <div className="flex items-center space-x-3 shrink-0 self-start md:self-auto">
             <button
               onClick={handleAutofillAll}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20 transition-all flex items-center space-x-2 cursor-pointer"
+              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition-all flex items-center space-x-2 cursor-pointer shadow-2xs"
             >
-              <Lightbulb className="w-3.5 h-3.5" />
-              <span>Autofill High-Signal Answers</span>
+              <Lightbulb className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Autofill Sample Answers</span>
             </button>
 
             <button
               onClick={handleSynthesize}
               disabled={isSubmitting || questions.length === 0}
-              className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 cursor-pointer"
+              className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer"
             >
-              <span>{isSubmitting ? 'Synthesizing Report...' : 'Synthesize Final Recommendation'}</span>
+              <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Final Recommendation'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -156,10 +156,10 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
       </div>
 
       {isLoading ? (
-        <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-20 text-center space-y-4">
-          <div className="w-12 h-12 border-3 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <h3 className="text-base font-bold text-white">Synthesizing Adaptive Interview Questions...</h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto">
+        <div className="bg-white border border-slate-200 rounded-3xl p-16 text-center space-y-4 shadow-xs">
+          <div className="w-10 h-10 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <h3 className="text-base font-bold text-slate-900 font-display">Synthesizing Adaptive Interview Questions...</h3>
+          <p className="text-xs text-slate-500 max-w-md mx-auto">
             Examining code repositories and architectural proof-points to formulate deep technical probes.
           </p>
         </div>
@@ -168,20 +168,20 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
           {questions.map((q, idx) => (
             <div
               key={q.id}
-              className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-5"
+              className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-5 shadow-xs"
             >
               {/* Question Header & Context */}
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 border-b border-slate-850 pb-5">
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 border-b border-slate-100 pb-5">
                 <div className="space-y-1.5 max-w-3xl">
                   <div className="flex items-center space-x-2.5">
-                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">
+                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
                       Question {idx + 1}
                     </span>
-                    <span className="text-xs text-slate-400 font-mono">
+                    <span className="text-xs text-slate-500 font-mono">
                       Probing Target: {q.technicalConcept || q.projectTargeted}
                     </span>
                   </div>
-                  <h3 className="text-base font-bold text-white leading-snug pt-1">
+                  <h3 className="text-base font-bold text-slate-900 leading-snug pt-1 font-display">
                     {q.questionText}
                   </h3>
                 </div>
@@ -189,13 +189,13 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
                 <div className="flex items-center space-x-2 shrink-0">
                   <button
                     onClick={() => loadSampleAnswer(q.id, 'exceptional')}
-                    className="text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-800/60 transition-colors cursor-pointer"
+                    className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors cursor-pointer shadow-2xs"
                   >
                     Load Strong Answer
                   </button>
                   <button
                     onClick={() => loadSampleAnswer(q.id, 'poor')}
-                    className="text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-850 text-slate-400 border border-slate-800 transition-colors cursor-pointer"
+                    className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 transition-colors cursor-pointer shadow-2xs"
                   >
                     Load Weak Answer
                   </button>
@@ -204,20 +204,20 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
 
               {/* Rationale & Rubric */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div className="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1">
-                  <span className="font-bold text-slate-400 uppercase tracking-wider block text-[10px]">
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                  <span className="font-bold text-slate-600 uppercase tracking-wider block text-[10px]">
                     Why This Question Was Synthesized:
                   </span>
-                  <p className="text-slate-300 leading-relaxed">
+                  <p className="text-slate-700 leading-relaxed font-medium">
                     {q.probingRationale}
                   </p>
                 </div>
 
-                <div className="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1">
-                  <span className="font-bold text-teal-400 uppercase tracking-wider block text-[10px]">
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                  <span className="font-bold text-indigo-700 uppercase tracking-wider block text-[10px]">
                     Expected Evaluation Rubric:
                   </span>
-                  <p className="text-slate-300 leading-relaxed">
+                  <p className="text-slate-700 leading-relaxed font-medium">
                     {typeof q.evaluationRubric === 'object' && q.evaluationRubric !== null
                       ? `Exceptional: ${q.evaluationRubric.exceptional}`
                       : String(q.evaluationRubric)}
@@ -227,7 +227,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
 
               {/* Response Box */}
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase text-slate-400 tracking-wider block">
+                <label className="text-xs font-bold uppercase text-slate-500 tracking-wider block">
                   Candidate Spoken / Written Response:
                 </label>
                 <textarea
@@ -240,21 +240,21 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
                     })
                   }
                   placeholder="Candidate verbal or coding response will be recorded here..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-xs text-slate-100 placeholder-slate-600 focus:border-teal-500 focus:outline-none leading-relaxed"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none leading-relaxed transition-all font-medium"
                 />
               </div>
             </div>
           ))}
 
           {/* Bottom Action Ribbon */}
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs text-slate-400">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+            <span className="text-xs text-slate-600 font-medium">
               {Object.values(answers).filter((a) => a.trim().length > 0).length} of {questions.length} responses captured.
             </span>
             <button
               onClick={handleSynthesize}
               disabled={isSubmitting || questions.length === 0}
-              className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 cursor-pointer"
+              className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold px-6 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer"
             >
               <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Final Recommendation'}</span>
               <ArrowRight className="w-4 h-4" />

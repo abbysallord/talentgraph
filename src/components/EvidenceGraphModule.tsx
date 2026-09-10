@@ -40,46 +40,46 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
   const getCategoryBadge = (category: EvidenceNode['category']) => {
     switch (category) {
       case 'outcome':
-        return { label: 'Shipped Outcome', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20', icon: Award };
+        return { label: 'Shipped Outcome', color: 'text-amber-800 bg-amber-50 border-amber-200', icon: Award };
       case 'architecture':
-        return { label: 'System Architecture', color: 'text-blue-400 bg-blue-500/10 border-blue-500/20', icon: Layers };
+        return { label: 'System Architecture', color: 'text-blue-800 bg-blue-50 border-blue-200', icon: Layers };
       case 'skill':
-        return { label: 'Verified Codebase Skill', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', icon: Code2 };
+        return { label: 'Verified Codebase Skill', color: 'text-indigo-800 bg-indigo-50 border-indigo-200', icon: Code2 };
       case 'public_signal':
-        return { label: 'Verified Signal', color: 'text-purple-400 bg-purple-500/10 border-purple-500/20', icon: Network };
+        return { label: 'Public Signal', color: 'text-purple-800 bg-purple-50 border-purple-200', icon: Network };
     }
   };
 
   return (
     <div className="space-y-8">
       {/* Top Banner & Candidate Selector */}
-      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
               <Network className="w-3.5 h-3.5" />
               <span>Evidence Graph Extraction</span>
             </div>
-            <h2 className="text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
               Verified Proof Over Resume Claims
             </h2>
-            <p className="text-sm text-slate-400 mt-2 max-w-2xl leading-relaxed">
-              TalentGraph scans public code repositories, git history, live deployments, and architectural tradeoffs to construct an objective proof-of-work graph.
+            <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
+              TalentGraph scans public code repositories, git commit history, and architectural tradeoffs to construct an objective proof-of-work graph.
             </p>
           </div>
 
           <button
             onClick={onProceedToScoring}
-            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 shrink-0 cursor-pointer"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 shrink-0 cursor-pointer self-start md:self-auto"
           >
-            <span>Next Step: Run AI Reasoning Scorer</span>
+            <span>Next: Run AI Reasoning Scorer</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
         {/* Candidate Selector Cards */}
         <div className="space-y-3">
-          <label className="text-xs font-semibold uppercase text-slate-400 tracking-wider block">
+          <label className="text-xs font-bold uppercase text-slate-500 tracking-wider block">
             Select Candidate to Inspect Evidence Graph:
           </label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -89,29 +89,29 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                 <button
                   key={cand.id}
                   onClick={() => setSelectedCandidate(cand)}
-                  className={`p-5 rounded-2xl text-left border transition-all cursor-pointer ${
+                  className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-slate-900 border-emerald-500/80 shadow-xl shadow-emerald-500/10 ring-1 ring-emerald-500/30'
-                      : 'bg-slate-950/80 border-slate-800 hover:border-slate-700 hover:bg-slate-900'
+                      ? 'bg-indigo-50/50 border-indigo-600 shadow-xs ring-1 ring-indigo-500/20'
+                      : 'bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-white">{cand.name}</span>
+                    <span className="text-sm font-bold text-slate-900 font-display">{cand.name}</span>
                     {isSelected ? (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-600 text-white">
                         Inspecting
                       </span>
                     ) : (
-                      <span className="text-[10px] text-slate-500">Click to load</span>
+                      <span className="text-[10px] text-slate-400 font-medium">Click to select</span>
                     )}
                   </div>
-                  <div className="text-xs text-slate-300 font-medium truncate">{cand.role}</div>
+                  <div className="text-xs text-slate-700 font-medium truncate">{cand.role}</div>
                   <div className="text-[11px] text-slate-500 mt-1 truncate">{cand.education}</div>
-                  <div className="mt-3 flex items-center justify-between text-[11px] border-t border-slate-850 pt-2">
-                    <span className="text-emerald-400 font-mono font-semibold">
-                      {cand.evidenceGraph.length} Evidence Nodes
+                  <div className="mt-3 flex items-center justify-between text-[11px] border-t border-slate-200/80 pt-2">
+                    <span className="text-indigo-600 font-mono font-bold">
+                      {cand.evidenceGraph.length} Verified Nodes
                     </span>
-                    <span className="text-slate-400">{cand.experienceYears}y exp</span>
+                    <span className="text-slate-500 font-semibold">{cand.experienceYears}y exp</span>
                   </div>
                 </button>
               );
@@ -121,21 +121,21 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
       </div>
 
       {/* Selected Candidate Detail Card */}
-      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-8">
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         {/* Candidate Profile Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-800/80">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
           <div className="flex items-center space-x-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-slate-950 font-extrabold text-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-indigo-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md shadow-indigo-600/20 shrink-0 font-display">
               {selectedCandidate.name.charAt(0)}
             </div>
             <div>
               <div className="flex items-center space-x-3">
-                <h3 className="text-xl font-bold text-white">{selectedCandidate.name}</h3>
-                <span className="text-xs font-mono text-slate-400 bg-slate-950 px-2.5 py-0.5 rounded border border-slate-800">
+                <h3 className="text-xl font-bold text-slate-900 font-display">{selectedCandidate.name}</h3>
+                <span className="text-xs font-mono text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200">
                   {selectedCandidate.location}
                 </span>
               </div>
-              <p className="text-xs text-emerald-400 font-medium mt-0.5">
+              <p className="text-xs text-indigo-600 font-semibold mt-0.5">
                 {selectedCandidate.role} • {selectedCandidate.education}
               </p>
             </div>
@@ -147,9 +147,9 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                 href={selectedCandidate.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-950 hover:bg-slate-850 border border-slate-800 text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-colors"
+                className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-colors shadow-2xs"
               >
-                <GitBranch className="w-3.5 h-3.5" />
+                <GitBranch className="w-3.5 h-3.5 text-slate-500" />
                 <span>GitHub Codebase</span>
               </a>
             )}
@@ -158,9 +158,9 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                 href={selectedCandidate.portfolioUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-950 hover:bg-slate-850 border border-slate-800 text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-colors"
+                className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-colors shadow-2xs"
               >
-                <Globe className="w-3.5 h-3.5 text-teal-400" />
+                <Globe className="w-3.5 h-3.5 text-indigo-600" />
                 <span>Live Portfolio</span>
               </a>
             )}
@@ -168,11 +168,11 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
         </div>
 
         {/* Bio Extraction */}
-        <div className="bg-slate-950 border border-slate-800/80 rounded-2xl p-5">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">
+        <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-5">
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
             Candidate Overview &amp; Verification Summary
           </span>
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed font-medium">
             {selectedCandidate.rawBio}
           </p>
         </div>
@@ -190,10 +190,10 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setFilterCategory(tab.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   filterCategory === tab.id
-                    ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                    : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200'
                 }`}
               >
                 {tab.label}
@@ -214,7 +214,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
             return (
               <div
                 key={node.id}
-                className="bg-slate-950 border border-slate-800/80 hover:border-slate-700 p-5 rounded-2xl space-y-3 transition-all flex flex-col justify-between"
+                className="bg-white border border-slate-200 hover:border-slate-300 p-5 rounded-2xl space-y-3 transition-all flex flex-col justify-between shadow-2xs"
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between gap-2">
@@ -222,31 +222,31 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                       <BadgeIcon className="w-3 h-3" />
                       <span>{badge.label}</span>
                     </span>
-                    <span className="text-[11px] font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                    <span className="text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
                       {node.confidence}% Confidence
                     </span>
                   </div>
 
-                  <h4 className="text-sm font-bold text-white leading-snug">
+                  <h4 className="text-sm font-bold text-slate-900 leading-snug font-display">
                     {node.label}
                   </h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     {node.detail}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-900 flex items-center justify-between text-[11px] text-slate-400">
-                  <span className="truncate max-w-[240px] text-slate-500">
-                    Source: {node.sourceContext}
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                  <span className="truncate max-w-[240px] text-slate-400 font-mono text-[10px]">
+                    Context: {node.sourceContext}
                   </span>
                   {node.verifiedProofUrl && (
                     <a
                       href={node.verifiedProofUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center space-x-1 shrink-0"
+                      className="text-indigo-600 hover:text-indigo-800 font-bold inline-flex items-center space-x-1 shrink-0"
                     >
-                      <span>Verify</span>
+                      <span>Verify Proof</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
@@ -257,15 +257,15 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
         </div>
 
         {/* Bottom Navigation Ribbon */}
-        <div className="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-          <span className="text-xs text-slate-400">
-            Evidence graph verified. Ready for multi-dimensional AI scoring.
+        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <span className="text-xs text-slate-500 font-medium">
+            Evidence graph verified. Ready for multi-dimensional AI scoring against role rubric.
           </span>
           <button
             onClick={onProceedToScoring}
-            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 cursor-pointer"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer self-end sm:self-auto"
           >
-            <span>Proceed to AI Reasoning Scorer</span>
+            <span>Proceed to Step 3: Run AI Reasoning Scorer</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
