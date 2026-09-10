@@ -5,30 +5,47 @@ import {
   Sparkles, 
   Send, 
   Layers, 
-  CheckCircle, 
-  Plus, 
+  CheckCircle2, 
   FileText,
   Target,
-  ArrowRight
+  ArrowRight,
+  Code2,
+  Cpu,
+  ShieldCheck,
+  Zap
 } from 'lucide-react';
 import { Requisition } from '@/lib/types';
 
 interface IntakeModuleProps {
   onRequisitionCreated: (req: Requisition) => void;
   currentRequisition: Requisition;
+  onProceedToEvidence: () => void;
 }
 
 export const IntakeModule: React.FC<IntakeModuleProps> = ({
   onRequisitionCreated,
   currentRequisition,
+  onProceedToEvidence,
 }) => {
   const [promptInput, setPromptInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const presets = [
-    'Need a Forward Deployed Engineer who can build React frontends and FastAPI backends, integrate Groq LLMs, and ship production MVPs in 10-day sprints.',
-    'Hiring a Speech & Voice Systems Engineer to build sub-second latency voice-to-voice agents with continuous VAD, in-memory KittenTTS, and PipeWire routing.',
-    'Looking for a Lead Backend Architect experienced in SQLite WAL concurrency, multi-threaded crawlers, and automated ATS resume compatibility engines.',
+    {
+      title: 'Founding Full-Stack & Systems Engineer',
+      prompt: 'Need an autonomous founding engineer who can build responsive Next.js frontends and low-latency FastAPI backends, orchestrate Docker containers, integrate Groq LLM structured outputs, and ship production MVPs in 10-day sprints.',
+      tags: ['Next.js 16', 'FastAPI', 'SQLite WAL', 'Docker', 'Groq API']
+    },
+    {
+      title: 'Low-Latency AI Voice Systems Architect',
+      prompt: 'Hiring a voice systems specialist to build sub-second latency conversational agents with continuous VAD, in-memory neural TTS (Kokoro/KittenTTS), and Linux audio stream routing.',
+      tags: ['Neural TTS', 'Silero VAD', 'WebSocket Streaming', 'PipeWire']
+    },
+    {
+      title: 'High-Throughput Distributed Backend Lead',
+      prompt: 'Looking for a lead backend systems architect experienced in multi-threaded web crawlers, SQLite Write-Ahead Logging concurrency, connection pool tuning, and automated ATS matching algorithms.',
+      tags: ['Concurrency', 'SQLite WAL', 'AsyncIO', 'Data Pipelines']
+    }
   ];
 
   const handleGenerate = async (query: string) => {
@@ -54,152 +71,192 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Module Banner */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-        <div className="flex items-start justify-between">
+    <div className="space-y-8">
+      {/* Top Creation Section */}
+      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Module 1: Conversational Intake Agent</span>
+              <span>Conversational Requisition Agent</span>
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
-              Calibrated Requisition & Evidence Rubric Generator
+            <h2 className="text-2xl font-bold text-white tracking-tight">
+              Define Your Engineering Role in Plain English
             </h2>
-            <p className="text-xs text-slate-400 mt-1 max-w-2xl">
-              Describe your role requirements in plain English. The AI agent probes for technical depth, extracts core architectural competencies, and synthesizes a calibrated Evidence Rubric to grade candidate proof-of-work.
+            <p className="text-sm text-slate-400 mt-2 max-w-2xl leading-relaxed">
+              Skip rigid HR job description templates. Describe your engineering requirements, and the AI agent decomposes your intent into architectural competencies, verified code criteria, and calibrated scoring weights.
             </p>
           </div>
-          <div className="hidden sm:flex items-center space-x-2 text-xs text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Groq Llama-3.3 Reasoning Active</span>
+
+          <div className="flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-xl shrink-0">
+            <Zap className="w-3.5 h-3.5" />
+            <span className="font-mono text-[11px] font-medium">Sub-500ms Groq Inference</span>
           </div>
         </div>
 
-        {/* Conversational Input Box */}
-        <div className="mt-5">
-          <div className="relative">
+        {/* Conversational Input Console */}
+        <div className="space-y-4">
+          <div className="relative bg-slate-950 rounded-2xl border border-slate-800 p-2 focus-within:border-emerald-500/50 transition-all shadow-inner">
             <textarea
-              rows={3}
+              rows={4}
               value={promptInput}
               onChange={(e) => setPromptInput(e.target.value)}
-              placeholder="e.g., We need an autonomous engineer who knows Next.js, FastAPI, Docker, and has built multi-modal computer vision pipelines..."
-              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none resize-none"
+              placeholder="Describe the role: e.g. We need a founding engineer who can architect FastAPI backends, build responsive React frontends, configure Docker Compose, and ship full-stack MVPs autonomously..."
+              className="w-full bg-transparent px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none resize-none leading-relaxed"
             />
-            <button
-              onClick={() => handleGenerate(promptInput)}
-              disabled={isLoading || !promptInput.trim()}
-              className="absolute right-3 bottom-3 inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition-all shadow-md shadow-emerald-500/10"
-            >
-              <span>{isLoading ? 'Generating Requisition...' : 'Generate Requisition'}</span>
-              <Send className="w-3.5 h-3.5" />
-            </button>
+            <div className="flex items-center justify-between px-3 py-2 border-t border-slate-900">
+              <span className="text-xs text-slate-500">
+                Powered by Groq LLM • Auto-synthesizes technical rubric
+              </span>
+              <button
+                onClick={() => handleGenerate(promptInput)}
+                disabled={isLoading || !promptInput.trim()}
+                className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 text-slate-950 font-bold px-5 py-2 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-500/20 cursor-pointer"
+              >
+                <span>{isLoading ? 'Calibrating Role...' : 'Generate Requisition'}</span>
+                <Send className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
 
-          {/* Quick Presets */}
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <span className="text-xs text-slate-500 font-medium">Quick Prompts:</span>
-            {presets.map((preset, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setPromptInput(preset);
-                  handleGenerate(preset);
-                }}
-                className="text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-md border border-slate-700/60 transition-colors text-left truncate max-w-xs"
-              >
-                {preset}
-              </button>
-            ))}
+          {/* Quick Role Presets */}
+          <div className="space-y-2">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
+              Or Click a Pre-Calibrated Enterprise Scenario:
+            </span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {presets.map((preset, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleGenerate(preset.prompt)}
+                  disabled={isLoading}
+                  className="bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-emerald-500/40 p-4 rounded-2xl text-left transition-all group cursor-pointer"
+                >
+                  <h4 className="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    {preset.title}
+                  </h4>
+                  <p className="text-[11px] text-slate-400 line-clamp-2 mt-1 leading-relaxed">
+                    {preset.prompt}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {preset.tags.map((t, i) => (
+                      <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Live Calibrated Requisition Spec Preview */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-slate-800 bg-slate-950/40 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-              <FileText className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <h3 className="text-lg font-bold text-white">{currentRequisition.title}</h3>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                  {currentRequisition.seniority}
-                </span>
-              </div>
-              <p className="text-xs text-slate-400">
-                {currentRequisition.department} • Compensation Target: {currentRequisition.targetCompensation}
-              </p>
-            </div>
-          </div>
-          <div className="text-right">
-            <span className="text-xs font-mono text-slate-500">ID: {currentRequisition.id}</span>
-          </div>
-        </div>
-
-        <div className="p-6 space-y-6">
+      {/* Active Requisition Specification Sheet */}
+      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
           <div>
-            <h4 className="text-xs font-semibold uppercase text-slate-400 tracking-wider mb-2">Role Overview</h4>
-            <p className="text-sm text-slate-200 leading-relaxed bg-slate-950/50 p-4 rounded-xl border border-slate-800">
-              {currentRequisition.summary}
+            <div className="flex items-center space-x-2">
+              <span className="text-[11px] font-mono uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
+                Active Specification: {currentRequisition.id}
+              </span>
+              <span className="text-xs text-slate-400">• {currentRequisition.department}</span>
+            </div>
+            <h3 className="text-2xl font-bold text-white mt-1">
+              {currentRequisition.title}
+            </h3>
+            <p className="text-xs text-slate-400 mt-1">
+              Seniority: <span className="text-slate-200 font-semibold">{currentRequisition.seniority}</span> • Target Budget: <span className="text-emerald-400 font-mono font-semibold">{currentRequisition.targetCompensation}</span>
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Must Haves */}
-            <div className="bg-slate-950/50 p-5 rounded-xl border border-slate-800">
-              <div className="flex items-center space-x-2 text-xs font-bold uppercase text-emerald-400 mb-3">
-                <CheckCircle className="w-4 h-4" />
-                <span>Must-Have Technical Stack</span>
-              </div>
-              <ul className="space-y-2">
-                {currentRequisition.mustHaveSkills.map((skill, i) => (
-                  <li key={i} className="text-xs text-slate-200 flex items-center space-x-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>{skill}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <button
+            onClick={onProceedToEvidence}
+            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 shrink-0 cursor-pointer"
+          >
+            <span>Next Step: Inspect Candidate Evidence Graph</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
 
-            {/* Architectural Competencies */}
-            <div className="bg-slate-950/50 p-5 rounded-xl border border-slate-800">
-              <div className="flex items-center space-x-2 text-xs font-bold uppercase text-blue-400 mb-3">
-                <Layers className="w-4 h-4" />
-                <span>Architectural Competencies</span>
-              </div>
-              <ul className="space-y-2">
-                {currentRequisition.architecturalCompetencies.map((comp, i) => (
-                  <li key={i} className="text-xs text-slate-200 flex items-center space-x-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-                    <span>{comp}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        {/* Role Summary */}
+        <div className="bg-slate-950 border border-slate-800/80 rounded-2xl p-6">
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">
+            Synthesized Executive Role Summary
+          </span>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            {currentRequisition.summary}
+          </p>
+        </div>
 
-          {/* Evidence Rubric */}
-          <div>
-            <div className="flex items-center space-x-2 text-xs font-bold uppercase text-slate-300 mb-3">
-              <Target className="w-4 h-4 text-emerald-400" />
-              <span>Evidence Evaluation Rubric (Weights Applied to Candidate Proof)</span>
+        {/* Competency & Skill Grids */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Must Have Technical Skills */}
+          <div className="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 space-y-3">
+            <div className="flex items-center space-x-2">
+              <Code2 className="w-4 h-4 text-emerald-400" />
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+                Mandatory Technical Criteria
+              </h4>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {currentRequisition.evidenceRubric.map((item, idx) => (
-                <div key={idx} className="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-white">{item.criterion}</span>
-                    <span className="text-xs font-mono font-extrabold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800">
-                      {item.weight}%
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-400 leading-normal">{item.description}</p>
+            <div className="space-y-2">
+              {currentRequisition.mustHaveSkills.map((skill, idx) => (
+                <div key={idx} className="flex items-center space-x-2.5 text-xs text-slate-200 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/60">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>{skill}</span>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Architectural Competencies */}
+          <div className="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 space-y-3">
+            <div className="flex items-center space-x-2">
+              <Layers className="w-4 h-4 text-teal-400" />
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+                Architectural Competencies
+              </h4>
+            </div>
+            <div className="space-y-2">
+              {currentRequisition.architecturalCompetencies.map((comp, idx) => (
+                <div key={idx} className="flex items-center space-x-2.5 text-xs text-slate-200 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/60">
+                  <Target className="w-4 h-4 text-teal-400 shrink-0" />
+                  <span>{comp}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Calibrated Evidence Rubric */}
+        <div className="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Target className="w-4 h-4 text-indigo-400" />
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+                Calibrated Evidence Scoring Rubric
+              </h4>
+            </div>
+            <span className="text-xs text-slate-400 font-mono">100% Total Weight</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {currentRequisition.evidenceRubric.map((rubric, idx) => (
+              <div key={idx} className="bg-slate-900/60 border border-slate-800/60 p-4 rounded-xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-white">{rubric.criterion}</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                    {rubric.weight}% Weight
+                  </span>
+                </div>
+                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${rubric.weight * 2.5}%` }} />
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  {rubric.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -8,9 +8,12 @@ import {
   ExternalLink, 
   Calendar, 
   CheckCircle2, 
-  FileText,
-  UserCheck,
-  Sparkles
+  FileText, 
+  UserCheck, 
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  BookmarkCheck
 } from 'lucide-react';
 import { CandidateProfile, Requisition, InterviewSynthesis } from '@/lib/types';
 
@@ -41,60 +44,64 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header Banner */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-2">
+            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-3">
               <Database className="w-3.5 h-3.5" />
-              <span>Module 6: Longitudinal Talent Memory</span>
+              <span>Longitudinal Talent Intelligence</span>
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
-              Cross-Requisition Candidate Memory & Re-Engagement Engine
+            <h2 className="text-2xl font-bold text-white tracking-tight">
+              Cross-Requisition Talent Memory Vault
             </h2>
-            <p className="text-xs text-slate-400 mt-1 max-w-2xl">
-              Persists candidate intelligence, verified evidence nodes, and evaluation rationales across requisitions. Re-surfaces top historical talent whenever new roles open up.
+            <p className="text-sm text-slate-400 mt-2 max-w-2xl leading-relaxed">
+              Never lose track of exceptional technical talent. Candidate intelligence, code verifications, and interview notes persist across company openings, re-surfacing top builders as new technical needs emerge.
             </p>
           </div>
 
-          <div className="text-xs font-mono text-emerald-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
-            {memoryRecords.length} Active Records In Datastore
+          <div className="text-xs font-mono text-emerald-400 bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 shrink-0">
+            {memoryRecords.length} Retained Engineering Records
           </div>
         </div>
 
-        {/* Search Input */}
-        <div className="mt-5 relative">
-          <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+        {/* Search Input Bar */}
+        <div className="relative">
+          <Search className="w-4 h-4 text-slate-500 absolute left-4 top-3.5" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search talent memory by candidate name, skill, or verified project..."
-            className="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-500 outline-none"
+            placeholder="Search talent vault by candidate name, architecture keyword, or project proof..."
+            className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-11 pr-4 py-3 text-xs text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none leading-relaxed"
           />
         </div>
       </div>
 
-      {/* Memory Records Grid */}
+      {/* Memory Records List */}
       <div className="space-y-4">
         {filtered.length === 0 ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center text-slate-500 text-xs">
-            No talent records found matching &quot;{searchTerm}&quot;. Complete an evaluation in Module 5 and click &quot;Save to Talent Memory&quot; to populate the datastore.
+          <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-16 text-center space-y-3">
+            <BookmarkCheck className="w-10 h-10 text-slate-600 mx-auto" />
+            <h3 className="text-base font-bold text-white">No Matching Records in Vault</h3>
+            <p className="text-xs text-slate-400 max-w-md mx-auto">
+              No talent profiles match &quot;{searchTerm}&quot;. Save evaluations from Step 5 to populate the permanent talent intelligence datastore.
+            </p>
           </div>
         ) : (
           filtered.map((rec, idx) => (
             <div
               key={idx}
-              className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-colors space-y-4"
+              className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-6 hover:border-slate-750 transition-all"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center font-bold text-white text-base">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white font-extrabold text-lg flex items-center justify-center shadow-lg shadow-indigo-600/20 shrink-0">
                     {rec.candidate.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">{rec.candidate.name}</h3>
+                    <h3 className="text-lg font-bold text-white">{rec.candidate.name}</h3>
                     <p className="text-xs text-slate-400">
                       {rec.candidate.role} • {rec.candidate.education}
                     </p>
@@ -102,44 +109,46 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded border border-emerald-800">
-                    Fit Score: {rec.synthesis.overallScore}%
-                  </span>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  <span
+                    className={`text-xs font-mono font-bold px-3 py-1 rounded-xl border ${
+                      rec.synthesis.recommendation === 'STRONG_HIRE'
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                        : 'bg-teal-500/10 text-teal-400 border-teal-500/30'
+                    }`}
+                  >
                     {rec.synthesis.recommendation}
                   </span>
+
+                  <button
+                    onClick={() => onSelectCandidateForRole(rec.candidate)}
+                    className="bg-slate-950 hover:bg-slate-850 text-slate-200 border border-slate-800 px-4 py-2 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-colors cursor-pointer"
+                  >
+                    <span>Re-evaluate for Active Role</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-indigo-400" />
+                  </button>
                 </div>
               </div>
 
-              {/* Memory Summary */}
-              <div className="text-xs text-slate-300 bg-slate-950/60 p-4 rounded-xl border border-slate-800 leading-relaxed">
-                <span className="text-slate-400 font-semibold block mb-1">Synthesized Profile Memory:</span>
-                {rec.synthesis.executiveSummary}
+              {/* Executive Summary */}
+              <div className="bg-slate-950 border border-slate-850 p-5 rounded-2xl space-y-2">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  Preserved Technical Synthesis
+                </span>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {rec.synthesis.executiveSummary}
+                </p>
               </div>
 
               {/* Recruiter Reviewer Notes */}
-              {rec.synthesis.recruiterSignoff?.reviewerNotes && (
-                <div className="text-[11px] text-slate-400 flex items-center space-x-2">
-                  <UserCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>
-                    <strong>Reviewer Sign-off:</strong> {rec.synthesis.recruiterSignoff.reviewerNotes}
-                  </span>
+              {rec.synthesis.recruiterSignoff && (
+                <div className="flex items-start space-x-3 text-xs text-slate-400 bg-slate-950/60 p-4 rounded-xl border border-slate-850">
+                  <UserCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-slate-300">Recruiter Sign-Off Note: </span>
+                    <span>{rec.synthesis.recruiterSignoff.reviewerNotes}</span>
+                  </div>
                 </div>
               )}
-
-              {/* Bottom Re-match Action */}
-              <div className="pt-2 flex items-center justify-between">
-                <span className="text-[11px] text-slate-500">
-                  Recorded: {new Date(rec.savedAt).toLocaleDateString()}
-                </span>
-                <button
-                  onClick={() => onSelectCandidateForRole(rec.candidate)}
-                  className="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-950/40 hover:bg-emerald-950 px-3 py-1.5 rounded-lg border border-emerald-800/80 transition-colors"
-                >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Re-evaluate for Active Role ({activeRequisition.title.slice(0, 24)}...)</span>
-                </button>
-              </div>
             </div>
           ))
         )}

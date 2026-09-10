@@ -7,12 +7,13 @@ import {
   CheckCircle2, 
   AlertTriangle, 
   HelpCircle, 
-  ArrowRight,
-  TrendingUp,
-  Cpu,
-  BarChart3,
-  ShieldCheck,
-  AlertCircle
+  ArrowRight, 
+  TrendingUp, 
+  Cpu, 
+  BarChart3, 
+  ShieldCheck, 
+  AlertCircle,
+  RotateCcw
 } from 'lucide-react';
 import { CandidateProfile, Requisition, EvaluationRationale } from '@/lib/types';
 
@@ -53,44 +54,45 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
     runEvaluation();
   }, [candidate.id, requisition.id]);
 
-  const getScoreColor = (score: number) => {
-    if (score >= 85) return 'text-emerald-400 border-emerald-500/30 bg-emerald-950/20';
-    if (score >= 70) return 'text-blue-400 border-blue-500/30 bg-blue-950/20';
-    if (score >= 50) return 'text-amber-400 border-amber-500/30 bg-amber-950/20';
-    return 'text-rose-400 border-rose-500/30 bg-rose-950/20';
+  const getScoreBadge = (score: number) => {
+    if (score >= 85) return { color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30', label: 'Strong Fit (Top 5%)' };
+    if (score >= 70) return { color: 'text-teal-400 bg-teal-500/10 border-teal-500/30', label: 'Qualified Candidate' };
+    if (score >= 50) return { color: 'text-amber-400 bg-amber-500/10 border-amber-500/30', label: 'Partial Alignment' };
+    return { color: 'text-rose-400 bg-rose-500/10 border-rose-500/30', label: 'Significant Competency Gap' };
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Module Header */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-2">
+            <div className="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-3">
               <Scale className="w-3.5 h-3.5" />
-              <span>Module 3: Reasoning Engine with Written Rationale</span>
+              <span>Transparent AI Evaluation</span>
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
-              Multi-Dimensional Candidate Scoring & Evidence Evaluation
+            <h2 className="text-2xl font-bold text-white tracking-tight">
+              Explainable Reasoning Engine for {candidate.name}
             </h2>
-            <p className="text-xs text-slate-400 mt-1 max-w-2xl">
-              Evaluates candidate evidence against role rubrics using deep multi-step LLM reasoning. Replaces opaque percentages with written analytical rationales and concrete proof citations.
+            <p className="text-sm text-slate-400 mt-2 max-w-2xl leading-relaxed">
+              No black-box scores. Groq cross-evaluates candidate code evidence against the role rubric, writing an analytical technical justification citing verified project artifacts.
             </p>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 shrink-0">
             <button
               onClick={runEvaluation}
               disabled={isLoading}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-950 hover:bg-slate-850 text-slate-200 border border-slate-800 transition-colors flex items-center space-x-2 cursor-pointer disabled:opacity-50"
             >
-              {isLoading ? 'Re-Evaluating...' : 'Re-Run Reasoning'}
+              <RotateCcw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
+              <span>{isLoading ? 'Synthesizing...' : 'Re-Run Reasoning'}</span>
             </button>
             <button
               onClick={onProceedToScreening}
-              className="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/10"
+              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 cursor-pointer"
             >
-              <span>Launch Adaptive Screening</span>
+              <span>Next Step: Launch Adaptive Screening</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -98,57 +100,69 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
       </div>
 
       {isLoading ? (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-16 text-center">
-          <div className="w-10 h-10 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <h3 className="text-sm font-bold text-white">Synthesizing Candidate Evidence Graph...</h3>
-          <p className="text-xs text-slate-400 mt-1">Cross-referencing GitHub signals, architecture complexity, and role rubric</p>
+        <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-20 text-center space-y-4">
+          <div className="w-12 h-12 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <h3 className="text-base font-bold text-white">Synthesizing Analytical Evaluation...</h3>
+          <p className="text-xs text-slate-400 max-w-md mx-auto">
+            Cross-referencing verified repository commits, system architecture patterns, and calibrated rubric weights.
+          </p>
         </div>
       ) : evaluation ? (
-        <div className="space-y-6">
-          {/* Top Score Dashboard */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="space-y-8">
+          {/* Top Score Cards Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Overall Score Dial */}
-            <div className={`md:col-span-2 rounded-2xl border p-6 flex flex-col justify-between ${getScoreColor(evaluation.overallFitScore)}`}>
+            <div className="lg:col-span-5 bg-slate-900/80 border border-slate-800/80 rounded-3xl p-8 flex flex-col justify-between space-y-6">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider">Calibrated Fit Score</span>
-                  <span className="text-xs font-mono">Role: {requisition.id}</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Calibrated Fit Score
+                  </span>
+                  <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-md border ${getScoreBadge(evaluation.overallFitScore).color}`}>
+                    {getScoreBadge(evaluation.overallFitScore).label}
+                  </span>
                 </div>
-                <div className="flex items-baseline space-x-2 mt-4">
-                  <span className="text-5xl font-extrabold tracking-tight">{evaluation.overallFitScore}</span>
-                  <span className="text-lg opacity-70">/ 100</span>
+
+                <div className="flex items-baseline space-x-3 mt-6">
+                  <span className="text-6xl font-extrabold tracking-tight text-white">
+                    {evaluation.overallFitScore}
+                  </span>
+                  <span className="text-xl text-slate-500 font-semibold">/ 100</span>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-current/20 text-xs">
+              <div className="bg-slate-950 p-4 rounded-2xl border border-slate-850 text-xs text-slate-300 leading-relaxed">
                 {evaluation.overallFitScore >= 80 
-                  ? 'Strong positive alignment with core FDE competencies and proven shipping velocity.' 
-                  : 'Candidate has notable gaps in either frontend UI execution or distributed architecture depth.'}
+                  ? 'Strong positive alignment with core systems competencies, rapid execution speed, and proven shipping velocity.' 
+                  : 'Candidate has notable gaps in either frontend UI execution, systems architecture, or production evidence.'}
               </div>
             </div>
 
             {/* Dimension Breakdown Bars */}
-            <div className="md:col-span-3 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <h3 className="text-xs font-bold uppercase text-slate-400 tracking-wider flex items-center space-x-2">
-                <BarChart3 className="w-4 h-4 text-emerald-400" />
-                <span>Competency Dimension Scoring</span>
-              </h3>
+            <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800/80 rounded-3xl p-8 space-y-5">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs font-bold uppercase text-slate-400 tracking-wider flex items-center space-x-2">
+                  <BarChart3 className="w-4 h-4 text-emerald-400" />
+                  <span>Competency Dimension Breakdown</span>
+                </h3>
+                <span className="text-[11px] font-mono text-slate-500">Evaluated by LLM Reasoning</span>
+              </div>
 
-              <div className="space-y-3 pt-1">
+              <div className="space-y-4 pt-1">
                 {[
                   { label: 'Core Technical Stack Fit', score: evaluation.dimensionScores.coreSkills, color: 'bg-emerald-500' },
-                  { label: 'Architectural & Systems Depth', score: evaluation.dimensionScores.architecturalDepth, color: 'bg-blue-500' },
-                  { label: 'Production Velocity & Shipped Work', score: evaluation.dimensionScores.productionVelocity, color: 'bg-amber-500' },
+                  { label: 'Architectural & Systems Depth', score: evaluation.dimensionScores.architecturalDepth, color: 'bg-teal-500' },
+                  { label: 'Production Velocity & Shipped Work', score: evaluation.dimensionScores.productionVelocity, color: 'bg-indigo-500' },
                   { label: 'Domain & Problem-Solving Mastery', score: evaluation.dimensionScores.domainProblemSolving, color: 'bg-purple-500' },
                 ].map((dim, idx) => (
-                  <div key={idx} className="space-y-1">
+                  <div key={idx} className="space-y-1.5">
                     <div className="flex justify-between text-xs">
                       <span className="text-slate-300 font-medium">{dim.label}</span>
                       <span className="text-white font-mono font-bold">{dim.score}%</span>
                     </div>
                     <div className="h-2 w-full bg-slate-950 rounded-full overflow-hidden border border-slate-800">
                       <div
-                        className={`h-full ${dim.color} transition-all duration-500`}
+                        className={`h-full ${dim.color} transition-all duration-700`}
                         style={{ width: `${dim.score}%` }}
                       ></div>
                     </div>
@@ -159,12 +173,14 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
           </div>
 
           {/* Written Analytical Rationale */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-            <h3 className="text-sm font-bold text-white flex items-center space-x-2 mb-3">
+          <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-8 space-y-4">
+            <div className="flex items-center space-x-2">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span>Analytical Written Rationale</span>
-            </h3>
-            <div className="bg-slate-950/70 p-5 rounded-xl border border-slate-800/80 text-sm text-slate-200 leading-relaxed">
+              <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                Analytical Written Rationale
+              </h3>
+            </div>
+            <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800/80 text-sm text-slate-200 leading-relaxed">
               {evaluation.writtenRationale}
             </div>
           </div>
@@ -172,29 +188,29 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
           {/* Tri-Column Insights: Strengths, Gaps, Interview Watchouts */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Verified Strengths */}
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-              <div className="flex items-center space-x-2 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-3">
+            <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 space-y-3">
+              <div className="flex items-center space-x-2 text-xs font-bold text-emerald-400 uppercase tracking-wider">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Verified Strengths</span>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {evaluation.verifiedStrengths.map((str, i) => (
-                  <li key={i} className="text-xs text-slate-300 bg-slate-950/50 p-3 rounded-lg border border-slate-800/60 leading-normal">
+                  <li key={i} className="text-xs text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 leading-relaxed">
                     {str}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Critical Gaps */}
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-              <div className="flex items-center space-x-2 text-xs font-bold text-amber-400 uppercase tracking-wider mb-3">
+            {/* Identified Gaps */}
+            <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 space-y-3">
+              <div className="flex items-center space-x-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
                 <AlertTriangle className="w-4 h-4" />
                 <span>Identified Skill Gaps</span>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {evaluation.criticalGaps.map((gap, i) => (
-                  <li key={i} className="text-xs text-slate-300 bg-slate-950/50 p-3 rounded-lg border border-slate-800/60 leading-normal">
+                  <li key={i} className="text-xs text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 leading-relaxed">
                     {gap}
                   </li>
                 ))}
@@ -202,19 +218,33 @@ export const ReasoningScorerModule: React.FC<ReasoningScorerModuleProps> = ({
             </div>
 
             {/* Interview Watchouts */}
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-              <div className="flex items-center space-x-2 text-xs font-bold text-rose-400 uppercase tracking-wider mb-3">
+            <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 space-y-3">
+              <div className="flex items-center space-x-2 text-xs font-bold text-rose-400 uppercase tracking-wider">
                 <AlertCircle className="w-4 h-4" />
                 <span>Interview Watch-Outs</span>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {evaluation.interviewWatchouts.map((watch, i) => (
-                  <li key={i} className="text-xs text-slate-300 bg-slate-950/50 p-3 rounded-lg border border-slate-800/60 leading-normal">
+                  <li key={i} className="text-xs text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 leading-relaxed">
                     {watch}
                   </li>
                 ))}
               </ul>
             </div>
+          </div>
+
+          {/* Bottom Progression Bar */}
+          <div className="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+            <span className="text-xs text-slate-400">
+              Evaluation complete. Ready to synthesize adaptive technical screening questions.
+            </span>
+            <button
+              onClick={onProceedToScreening}
+              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs flex items-center space-x-2 transition-all shadow-xl shadow-emerald-500/20 cursor-pointer"
+            >
+              <span>Next Step: Launch Adaptive Screening</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       ) : null}
