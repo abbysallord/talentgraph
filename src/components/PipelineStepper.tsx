@@ -150,7 +150,7 @@ export const PipelineStepper: React.FC<PipelineStepperProps> = ({
                 onClick={() => setActiveTab(step.id)}
                 className={`relative flex flex-col p-3 rounded-xl text-left transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-indigo-50/80 border border-indigo-200 shadow-xs'
+                    ? 'bg-emerald-50/80 border border-emerald-200 shadow-xs'
                     : isCompleted
                     ? 'bg-slate-50 border border-slate-200 hover:border-slate-300'
                     : 'bg-white border border-slate-150 opacity-70 hover:opacity-100 hover:border-slate-300'
@@ -160,7 +160,7 @@ export const PipelineStepper: React.FC<PipelineStepperProps> = ({
                   <div
                     className={`w-6 h-6 rounded-lg flex items-center justify-center text-[11px] font-bold ${
                       isActive
-                        ? 'bg-indigo-600 text-white shadow-xs'
+                        ? 'bg-emerald-600 text-white shadow-xs'
                         : isCompleted
                         ? 'bg-emerald-100 text-emerald-700'
                         : 'bg-slate-200 text-slate-600'
@@ -172,10 +172,10 @@ export const PipelineStepper: React.FC<PipelineStepperProps> = ({
                       step.number
                     )}
                   </div>
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`} />
                 </div>
 
-                <span className={`text-xs font-bold leading-tight ${isActive ? 'text-indigo-950 font-display' : 'text-slate-800'}`}>
+                <span className={`text-xs font-bold leading-tight ${isActive ? 'text-emerald-950 font-display' : 'text-slate-800'}`}>
                   {step.label}
                 </span>
                 <span className="text-[10px] text-slate-500 truncate mt-0.5 font-medium">
@@ -183,7 +183,7 @@ export const PipelineStepper: React.FC<PipelineStepperProps> = ({
                 </span>
 
                 {isActive && (
-                  <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-indigo-600 rounded-full" />
+                  <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-emerald-600 rounded-full" />
                 )}
               </button>
             );
@@ -195,7 +195,7 @@ export const PipelineStepper: React.FC<PipelineStepperProps> = ({
       <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+            <span className="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
               Stage {currentStepIndex + 1} of 6
             </span>
             <h3 className="text-sm font-bold text-slate-900 tracking-tight font-display">
@@ -210,7 +210,7 @@ export const PipelineStepper: React.FC<PipelineStepperProps> = ({
         <div className="flex items-center space-x-3 shrink-0">
           <button
             onClick={() => setActiveTab(guide.nextTabId)}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer"
           >
             <span>{guide.nextActionText}</span>
             <ArrowRight className="w-3.5 h-3.5" />

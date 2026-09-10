@@ -131,7 +131,7 @@ export default function ConsolePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-body selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-body selection:bg-emerald-100 selection:text-emerald-900">
       {/* Top Navigation Bar */}
       <Navbar
         activeTab={activeTab}
@@ -151,7 +151,7 @@ export default function ConsolePage() {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-600 transition-colors"
+            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-emerald-600 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Overview</span>
@@ -167,8 +167,8 @@ export default function ConsolePage() {
 
         {/* Live Demo Notification Banner */}
         {demoBannerMessage && (
-          <div className="bg-indigo-50 border border-indigo-200 text-indigo-900 px-5 py-3 rounded-2xl text-xs flex items-center space-x-3 animate-pulse shadow-xs font-semibold">
-            <Zap className="w-4 h-4 text-indigo-600 shrink-0" />
+          <div className="bg-emerald-50 border border-emerald-200 text-emerald-900 px-5 py-3 rounded-2xl text-xs flex items-center space-x-3 animate-pulse shadow-xs font-semibold">
+            <Zap className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>{demoBannerMessage}</span>
           </div>
         )}

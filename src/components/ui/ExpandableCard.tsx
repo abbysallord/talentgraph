@@ -36,7 +36,7 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
     <div
       className={`rounded-2xl border transition-all duration-200 overflow-hidden bg-white ${
         isExpanded
-          ? 'border-indigo-300 shadow-md ring-1 ring-indigo-200'
+          ? 'border-emerald-300 shadow-md ring-1 ring-emerald-200'
           : 'border-slate-200 hover:border-slate-300 shadow-2xs'
       }`}
     >
@@ -54,7 +54,7 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
               <BadgeIcon className="w-3 h-3" />
               <span>{badge.label}</span>
             </span>
-            <span className="text-[10px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+            <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
               {confidence}% Confidence
             </span>
           </div>
@@ -69,7 +69,7 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
 
         <div
           className={`p-1.5 rounded-lg bg-slate-50 text-slate-400 transition-transform duration-200 shrink-0 ${
-            isExpanded ? 'rotate-180 text-indigo-600 bg-indigo-50' : ''
+            isExpanded ? 'rotate-180 text-emerald-600 bg-emerald-50' : ''
           }`}
         >
           <ChevronDown className="w-4 h-4" />
@@ -104,7 +104,7 @@ export const ExpandableCard: React.FC<ExpandableCardProps> = ({
                     href={verifiedProofUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center space-x-1 font-bold text-indigo-600 hover:text-indigo-800 transition-colors ml-auto text-xs"
+                    className="inline-flex items-center space-x-1 font-bold text-emerald-600 hover:text-emerald-800 transition-colors ml-auto text-xs"
                   >
                     <span>Inspect Public Artifact</span>
                     <ExternalLink className="w-3.5 h-3.5" />

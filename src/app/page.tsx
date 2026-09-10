@@ -104,35 +104,35 @@ export default function LandingPage() {
   const activeCandidate = showcaseCandidates[selectedCandidateIdx];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-body selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-body selection:bg-emerald-100 selection:text-emerald-900">
       {/* Top Floating Navigation */}
       <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center space-x-3.5">
-            <div className="w-10 h-10 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-600/20">
               <Network className="w-5 h-5 stroke-[2.3]" />
             </div>
             <div>
               <span className="font-extrabold text-2xl tracking-tight text-slate-900 font-display">
                 TalentGraph
               </span>
-              <span className="ml-2 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+              <span className="ml-2 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
                 Enterprise AI
               </span>
             </div>
           </div>
 
           <nav className="hidden md:flex items-center space-x-8 text-xs font-bold text-slate-600">
-            <a href="#evidence-engine" className="hover:text-indigo-600 transition-colors">
+            <a href="#evidence-engine" className="hover:text-emerald-600 transition-colors">
               Evidence Engine
             </a>
-            <a href="#why-ats-fails" className="hover:text-indigo-600 transition-colors">
+            <a href="#why-ats-fails" className="hover:text-emerald-600 transition-colors">
               Why ATS Fails
             </a>
-            <a href="#pipeline" className="hover:text-indigo-600 transition-colors">
+            <a href="#pipeline" className="hover:text-emerald-600 transition-colors">
               6-Stage Pipeline
             </a>
-            <a href="#telemetry" className="hover:text-indigo-600 transition-colors">
+            <a href="#telemetry" className="hover:text-emerald-600 transition-colors">
               Audit Telemetry
             </a>
           </nav>
@@ -143,7 +143,7 @@ export default function LandingPage() {
                 href="/console"
                 className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-800 hover:bg-slate-100 transition-colors"
               >
-                <div className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xs font-extrabold">
+                <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xs font-extrabold">
                   {currentUser.name.charAt(0)}
                 </div>
                 <span>{currentUser.name}</span>
@@ -153,14 +153,14 @@ export default function LandingPage() {
                 onClick={() => setIsAuthModalOpen(true)}
                 className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
               >
-                <Lock className="w-3.5 h-3.5 text-indigo-600" />
+                <Lock className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Recruiter Sign In</span>
               </button>
             )}
 
             <Link
               href="/console"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 shadow-md shadow-indigo-600/20 transition-all"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 shadow-md shadow-emerald-600/20 transition-all"
             >
               <span>Launch Console</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -174,8 +174,8 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             {/* Shimmering Badge */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-50/90 border border-indigo-200/80 shadow-2xs">
-              <Zap className="w-3.5 h-3.5 text-indigo-600" />
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200/80 shadow-2xs">
+              <Zap className="w-3.5 h-3.5 text-emerald-600" />
               <ShinyText className="text-xs font-bold">
                 Autonomous Technical Recruiting Engine &bull; Sub-500ms Groq Inference
               </ShinyText>
@@ -184,7 +184,7 @@ export default function LandingPage() {
             {/* Headline */}
             <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.08] font-display">
               Hire for What They Built.<br />
-              <span className="text-indigo-600">Not What They Claim.</span>
+              <span className="text-emerald-600">Not What They Claim.</span>
             </h1>
 
             {/* Subhead */}
@@ -196,7 +196,7 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <Link
                 href="/console"
-                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-7 py-3.5 rounded-2xl text-sm flex items-center space-x-2.5 shadow-lg shadow-indigo-600/25 transition-all hover:scale-[1.02]"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3.5 rounded-2xl text-sm flex items-center space-x-2.5 shadow-lg shadow-emerald-600/25 transition-all hover:scale-[1.02]"
               >
                 <span>Enter Recruiter Console</span>
                 <ArrowRight className="w-4 h-4" />
@@ -206,7 +206,7 @@ export default function LandingPage() {
                 href="/console?action=demo"
                 className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold px-7 py-3.5 rounded-2xl text-sm flex items-center space-x-2 transition-colors shadow-xs"
               >
-                <Play className="w-4 h-4 text-indigo-600 fill-current" />
+                <Play className="w-4 h-4 text-emerald-600 fill-current" />
                 <span>One-Click AI Demo Walkthrough</span>
               </Link>
             </div>
@@ -235,7 +235,7 @@ export default function LandingPage() {
                         onClick={() => setSelectedCandidateIdx(idx)}
                         className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
                           selectedCandidateIdx === idx
-                            ? 'bg-white text-indigo-600 shadow-xs'
+                            ? 'bg-white text-emerald-600 shadow-xs'
                             : 'text-slate-600 hover:text-slate-900'
                         }`}
                       >
@@ -248,7 +248,7 @@ export default function LandingPage() {
                     <h3 className="text-2xl font-bold text-slate-900 font-display">
                       {activeCandidate.name}
                     </h3>
-                    <p className="text-xs text-indigo-600 font-semibold mt-0.5">
+                    <p className="text-xs text-emerald-600 font-semibold mt-0.5">
                       {activeCandidate.role}
                     </p>
                   </div>
@@ -263,7 +263,7 @@ export default function LandingPage() {
                         href={activeCandidate.proofUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center space-x-1 text-xs font-bold text-indigo-600 hover:text-indigo-800"
+                        className="inline-flex items-center space-x-1 text-xs font-bold text-emerald-600 hover:text-emerald-800"
                       >
                         <span>GitHub Artifact</span>
                         <ExternalLink className="w-3 h-3" />
@@ -291,7 +291,7 @@ export default function LandingPage() {
                     <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                       5-Dimension Competency Radar
                     </span>
-                    <span className="text-[10px] font-mono font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+                    <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                       Visual Assessment
                     </span>
                   </div>
@@ -312,7 +312,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div className="space-y-1">
-              <div className="text-4xl sm:text-5xl font-extrabold text-indigo-600 font-display">
+              <div className="text-4xl sm:text-5xl font-extrabold text-emerald-600 font-display">
                 <CountUp to={78} suffix="%" />
               </div>
               <p className="text-xs font-bold text-slate-800 uppercase tracking-wider">
@@ -365,7 +365,7 @@ export default function LandingPage() {
       {/* "Why Traditional ATS Fails vs What TalentGraph Proves" (Comparative Grid) */}
       <section id="why-ats-fails" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider">
             <Scale className="w-3.5 h-3.5" />
             <span>The Hiring Paradigm Shift</span>
           </div>
@@ -402,9 +402,9 @@ export default function LandingPage() {
             </ul>
           </div>
 
-          <div className="bg-white rounded-3xl border border-indigo-200 p-8 shadow-xs space-y-4 ring-1 ring-indigo-100">
-            <div className="flex items-center space-x-2 text-indigo-700 text-xs font-bold uppercase tracking-wider">
-              <CheckCircle2 className="w-4 h-4 text-indigo-600" />
+          <div className="bg-white rounded-3xl border border-emerald-200 p-8 shadow-xs space-y-4 ring-1 ring-emerald-100">
+            <div className="flex items-center space-x-2 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               <span>TalentGraph Evidence Engine</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 font-display">
@@ -412,15 +412,15 @@ export default function LandingPage() {
             </h3>
             <ul className="space-y-3 text-xs text-slate-600 leading-relaxed">
               <li className="flex items-start space-x-2">
-                <span className="text-indigo-600 font-bold">&bull;</span>
+                <span className="text-emerald-600 font-bold">&bull;</span>
                 <span>Extracts objective proof nodes from public git commits, PRs, and system architectures.</span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="text-indigo-600 font-bold">&bull;</span>
+                <span className="text-emerald-600 font-bold">&bull;</span>
                 <span>Writes comprehensive multi-dimensional justifications citing real codebase trade-offs.</span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="text-indigo-600 font-bold">&bull;</span>
+                <span className="text-emerald-600 font-bold">&bull;</span>
                 <span>Empowers human recruiters with ultimate sovereign gating and permanent talent memory.</span>
               </li>
             </ul>
@@ -432,7 +432,7 @@ export default function LandingPage() {
       <section id="pipeline" className="py-24 bg-white border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider">
               <Layers className="w-3.5 h-3.5" />
               <span>End-to-End Pipeline Architecture</span>
             </div>
@@ -486,7 +486,7 @@ export default function LandingPage() {
               <GlowingCard key={idx} className="p-6 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-2xs font-mono font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+                    <span className="text-2xs font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                       {stage.badge}
                     </span>
                     <span className="text-xs font-mono font-bold text-slate-400">
@@ -501,7 +501,7 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-2xs font-bold text-indigo-600">
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-2xs font-bold text-emerald-600">
                   <span>Interactive in Console</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </div>
@@ -546,7 +546,7 @@ export default function LandingPage() {
               href="/console"
               className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3.5 rounded-2xl text-xs flex items-center space-x-2 shadow-md transition-colors"
             >
-              <Activity className="w-4 h-4 text-indigo-400" />
+              <Activity className="w-4 h-4 text-emerald-400" />
               <span>Open Telemetry Cockpit</span>
             </Link>
           </div>
@@ -554,18 +554,18 @@ export default function LandingPage() {
       </section>
 
       {/* Final Call to Action */}
-      <section className="py-20 bg-indigo-900 text-white">
+      <section className="py-20 bg-emerald-950 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-white">
             Ready to Verify Top Builders for Your Engineering Teams?
           </h2>
-          <p className="text-sm sm:text-base text-indigo-200 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-emerald-200 leading-relaxed max-w-2xl mx-auto">
             Experience the automated pipeline in action or test-drive custom engineering requisitions with real candidate proof.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               href="/console"
-              className="bg-white text-indigo-900 hover:bg-indigo-50 font-bold px-8 py-3.5 rounded-2xl text-sm shadow-xl transition-all"
+              className="bg-white text-emerald-950 hover:bg-emerald-50 font-bold px-8 py-3.5 rounded-2xl text-sm shadow-xl transition-all"
             >
               Launch Recruiter Console Now
             </Link>
@@ -582,7 +582,7 @@ export default function LandingPage() {
             <span>Autonomous Technical Recruiting Intelligence &amp; Evidence Graph</span>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/console" className="hover:text-indigo-600 font-semibold transition-colors">
+            <Link href="/console" className="hover:text-emerald-600 font-semibold transition-colors">
               Hiring Console
             </Link>
             <span className="text-slate-300">|</span>

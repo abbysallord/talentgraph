@@ -14,7 +14,7 @@ export const ShinyText: React.FC<ShinyTextProps> = ({
 }) => {
   return (
     <span
-      className={`inline-block relative overflow-hidden bg-clip-text text-transparent bg-[linear-gradient(110deg,#4338ca,45%,#818cf8,55%,#4338ca)] bg-[length:250%_100%] animate-shine ${className}`}
+      className={`inline-block relative overflow-hidden bg-clip-text text-transparent bg-[linear-gradient(110deg,#047857,45%,#34d399,55%,#047857)] bg-[length:250%_100%] animate-shine ${className}`}
       style={{
         animation: 'shine 3.5s linear infinite',
       }}

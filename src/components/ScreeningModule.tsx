@@ -122,7 +122,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
       <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
               <HelpCircle className="w-3.5 h-3.5" />
               <span>Contextual Technical Interviewing</span>
             </div>
@@ -137,16 +137,16 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
           <div className="flex items-center space-x-3 shrink-0 self-start md:self-auto">
             <button
               onClick={handleAutofillAll}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition-all flex items-center space-x-2 cursor-pointer shadow-2xs"
+              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-all flex items-center space-x-2 cursor-pointer shadow-2xs"
             >
-              <Lightbulb className="w-3.5 h-3.5 text-indigo-600" />
+              <Lightbulb className="w-3.5 h-3.5 text-emerald-600" />
               <span>Autofill Sample Answers</span>
             </button>
 
             <button
               onClick={handleSynthesize}
               disabled={isSubmitting || questions.length === 0}
-              className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer"
+              className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer"
             >
               <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Final Recommendation'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -157,7 +157,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
 
       {isLoading ? (
         <div className="bg-white border border-slate-200 rounded-3xl p-16 text-center space-y-4 shadow-xs">
-          <div className="w-10 h-10 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <div className="w-10 h-10 border-3 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
           <h3 className="text-base font-bold text-slate-900 font-display">Synthesizing Adaptive Interview Questions...</h3>
           <p className="text-xs text-slate-500 max-w-md mx-auto">
             Examining code repositories and architectural proof-points to formulate deep technical probes.
@@ -174,7 +174,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 border-b border-slate-100 pb-5">
                 <div className="space-y-1.5 max-w-3xl">
                   <div className="flex items-center space-x-2.5">
-                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
                       Question {idx + 1}
                     </span>
                     <span className="text-xs text-slate-500 font-mono">
@@ -214,7 +214,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
                 </div>
 
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                  <span className="font-bold text-indigo-700 uppercase tracking-wider block text-[10px]">
+                  <span className="font-bold text-emerald-700 uppercase tracking-wider block text-[10px]">
                     Expected Evaluation Rubric:
                   </span>
                   <p className="text-slate-700 leading-relaxed font-medium">
@@ -240,7 +240,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
                     })
                   }
                   placeholder="Candidate verbal or coding response will be recorded here..."
-                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none leading-relaxed transition-all font-medium"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 focus:outline-none leading-relaxed transition-all font-medium"
                 />
               </div>
             </div>
@@ -254,7 +254,7 @@ export const ScreeningModule: React.FC<ScreeningModuleProps> = ({
             <button
               onClick={handleSynthesize}
               disabled={isSubmitting || questions.length === 0}
-              className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold px-6 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer"
+              className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold px-6 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer"
             >
               <span>{isSubmitting ? 'Synthesizing...' : 'Synthesize Final Recommendation'}</span>
               <ArrowRight className="w-4 h-4" />

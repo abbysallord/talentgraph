@@ -49,7 +49,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
       <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
               <Database className="w-3.5 h-3.5" />
               <span>Longitudinal Talent Intelligence</span>
             </div>
@@ -61,7 +61,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
             </p>
           </div>
 
-          <div className="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-200 shrink-0 self-start md:self-auto">
+          <div className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200 shrink-0 self-start md:self-auto">
             {memoryRecords.length} Retained Engineering Records
           </div>
         </div>
@@ -74,7 +74,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search talent vault by candidate name, architecture keyword, or project proof..."
-            className="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-11 pr-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none leading-relaxed transition-all font-medium"
+            className="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-11 pr-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 focus:outline-none leading-relaxed transition-all font-medium"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white font-extrabold text-lg flex items-center justify-center shadow-md shadow-indigo-600/20 shrink-0 font-display">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-extrabold text-lg flex items-center justify-center shadow-md shadow-emerald-600/20 shrink-0 font-display">
                     {rec.candidate.name.charAt(0)}
                   </div>
                   <div>
@@ -113,7 +113,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
                     className={`text-xs font-mono font-bold px-3 py-1 rounded-xl border ${
                       rec.synthesis.recommendation === 'STRONG_HIRE'
                         ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                        : 'bg-indigo-50 text-indigo-800 border-indigo-200'
+                        : 'bg-teal-50 text-teal-800 border-teal-200'
                     }`}
                   >
                     {rec.synthesis.recommendation}
@@ -124,7 +124,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
                     className="bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-colors cursor-pointer shadow-2xs"
                   >
                     <span>Re-evaluate for Active Role</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-indigo-600" />
+                    <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
                   </button>
                 </div>
               </div>
@@ -142,7 +142,7 @@ export const TalentMemoryModule: React.FC<TalentMemoryModuleProps> = ({
               {/* Recruiter Reviewer Notes */}
               {rec.synthesis.recruiterSignoff && (
                 <div className="flex items-start space-x-3 text-xs text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <UserCheck className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+                  <UserCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-slate-900">Recruiter Sign-Off Note: </span>
                     <span className="font-medium">{rec.synthesis.recruiterSignoff.reviewerNotes}</span>

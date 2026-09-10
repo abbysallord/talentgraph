@@ -76,7 +76,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
       <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Conversational Requisition Agent</span>
             </div>
@@ -88,7 +88,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center space-x-2 text-xs text-indigo-700 bg-indigo-50 border border-indigo-200 px-3.5 py-1.5 rounded-xl shrink-0 font-mono">
+          <div className="flex items-center space-x-2 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-xl shrink-0 font-mono">
             <Zap className="w-3.5 h-3.5" />
             <span className="font-semibold">Sub-500ms Groq Inference</span>
           </div>
@@ -96,7 +96,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
 
         {/* Conversational Input Console */}
         <div className="space-y-4">
-          <div className="relative bg-slate-50 rounded-2xl border border-slate-200 p-2 focus-within:border-indigo-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
+          <div className="relative bg-slate-50 rounded-2xl border border-slate-200 p-2 focus-within:border-emerald-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-emerald-100 transition-all">
             <textarea
               value={promptInput}
               onChange={(e) => setPromptInput(e.target.value)}
@@ -106,13 +106,13 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
             />
             <div className="flex items-center justify-between border-t border-slate-200/80 pt-2 px-2">
               <div className="flex items-center space-x-2 text-xs text-slate-500 font-medium">
-                <Code2 className="w-4 h-4 text-indigo-600" />
+                <Code2 className="w-4 h-4 text-emerald-600" />
                 <span>AI will extract: Skills, Competency Rubric &amp; Experience Weights</span>
               </div>
               <button
                 onClick={() => handleGenerate(promptInput)}
                 disabled={isLoading || !promptInput.trim()}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 shadow-md shadow-indigo-600/15 transition-all disabled:opacity-40 cursor-pointer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 shadow-md shadow-emerald-600/15 transition-all disabled:opacity-40 cursor-pointer"
               >
                 {isLoading ? (
                   <>
@@ -142,13 +142,13 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
                     setPromptInput(p.prompt);
                     handleGenerate(p.prompt);
                   }}
-                  className="text-left p-3.5 rounded-xl bg-slate-50 hover:bg-indigo-50/60 border border-slate-200 hover:border-indigo-300 transition-all group cursor-pointer shadow-2xs"
+                  className="text-left p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50/60 border border-slate-200 hover:border-emerald-300 transition-all group cursor-pointer shadow-2xs"
                 >
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-bold text-slate-900 group-hover:text-indigo-900 font-display">
+                    <span className="text-xs font-bold text-slate-900 group-hover:text-emerald-900 font-display">
                       {p.title}
                     </span>
-                    <Sparkles className="w-3 h-3 text-slate-400 group-hover:text-indigo-600" />
+                    <Sparkles className="w-3 h-3 text-slate-400 group-hover:text-emerald-600" />
                   </div>
                   <p className="text-xs text-slate-600 line-clamp-2 mb-2 leading-relaxed">
                     {p.prompt}
@@ -172,7 +172,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-5 gap-3">
           <div className="space-y-1">
             <div className="flex items-center space-x-2">
-              <Briefcase className="w-4 h-4 text-indigo-600" />
+              <Briefcase className="w-4 h-4 text-emerald-600" />
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 Active Requisition Intelligence
               </span>
@@ -206,7 +206,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
           {/* Required Skills */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
-              <Code2 className="w-4 h-4 text-indigo-600" />
+              <Code2 className="w-4 h-4 text-emerald-600" />
               <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                 Extracted Technical Stack
               </h4>
@@ -226,7 +226,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
           {/* Competency Pillars */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
-              <Layers className="w-4 h-4 text-indigo-600" />
+              <Layers className="w-4 h-4 text-emerald-600" />
               <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                 Evaluated Competencies
               </h4>
@@ -235,7 +235,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
               {(currentRequisition.architecturalCompetencies || []).map((comp, index) => (
                 <span
                   key={index}
-                  className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 text-xs font-semibold border border-indigo-200"
+                  className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200"
                 >
                   {comp}
                 </span>
@@ -247,7 +247,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
         {/* Scoring Dimension Weights */}
         <div className="space-y-3 pt-2">
           <div className="flex items-center space-x-2">
-            <Target className="w-4 h-4 text-indigo-600" />
+            <Target className="w-4 h-4 text-emerald-600" />
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
               Calibrated Dimension Weights &amp; Criteria
             </h4>
@@ -259,7 +259,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
                   <span className="text-xs font-bold text-slate-900 truncate">
                     {item.criterion}
                   </span>
-                  <span className="text-xs font-bold font-mono text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">
+                  <span className="text-xs font-bold font-mono text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
                     {item.weight}%
                   </span>
                 </div>
@@ -280,7 +280,7 @@ export const IntakeModule: React.FC<IntakeModuleProps> = ({
 
           <button
             onClick={onProceedToEvidence}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 shadow-md shadow-indigo-600/15 transition-all cursor-pointer self-end sm:self-auto"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 shadow-md shadow-emerald-600/15 transition-all cursor-pointer self-end sm:self-auto"
           >
             <span>Proceed to Step 2: Inspect Candidate Evidence</span>
             <ArrowRight className="w-3.5 h-3.5" />

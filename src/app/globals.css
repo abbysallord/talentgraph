@@ -1,10 +1,21 @@
-@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&f[]=satoshi@700,500,400&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=general-sans@600,500,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-display: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-brand: #059669;
+  --color-brand-hover: #047857;
+  --color-brand-light: #ecfdf5;
+  --color-brand-border: #a7f3d0;
+}
+
 :root {
-  --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* 60-30-10 Light Theme Tokens */
@@ -19,10 +30,10 @@
   --text-secondary: #475569;
   --text-muted: #94a3b8;
 
-  --brand: #4f46e5;
-  --brand-hover: #4338ca;
-  --brand-light: #eef2ff;
-  --brand-border: #c7d2fe;
+  --brand: #059669;
+  --brand-hover: #047857;
+  --brand-light: #ecfdf5;
+  --brand-border: #a7f3d0;
 }
 
 body {

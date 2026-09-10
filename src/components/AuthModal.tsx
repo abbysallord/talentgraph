@@ -139,7 +139,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
         {/* Brand Header */}
         <div className="flex items-center space-x-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20">
+          <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-600/20">
             <Shield className="w-5 h-5" />
           </div>
           <div>
@@ -159,7 +159,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               }}
               className={`py-2 text-xs font-bold rounded-lg transition-all ${
                 tab === "login"
-                  ? "bg-white text-indigo-600 shadow-xs"
+                  ? "bg-white text-emerald-600 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -173,7 +173,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               }}
               className={`py-2 text-xs font-bold rounded-lg transition-all ${
                 tab === "register"
-                  ? "bg-white text-indigo-600 shadow-xs"
+                  ? "bg-white text-emerald-600 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -212,7 +212,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="recruiter@talentgraph.io"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -228,7 +228,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     setTab("forgot");
                     setError(null);
                   }}
-                  className="text-xs font-semibold text-indigo-600 hover:text-indigo-800"
+                  className="text-xs font-semibold text-emerald-600 hover:text-emerald-800"
                 >
                   Forgot password?
                 </button>
@@ -241,7 +241,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -250,7 +250,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
               >
                 <span>{loading ? "Verifying..." : "Sign In to Console"}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -262,9 +262,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <button
                 type="button"
                 onClick={handleFillDemo}
-                className="text-xs font-semibold text-slate-600 hover:text-indigo-600 transition-colors inline-flex items-center space-x-1.5"
+                className="text-xs font-semibold text-slate-600 hover:text-emerald-600 transition-colors inline-flex items-center space-x-1.5"
               >
-                <UserCheck className="w-3.5 h-3.5 text-indigo-500" />
+                <UserCheck className="w-3.5 h-3.5 text-emerald-500" />
                 <span>Autofill Sample Recruiter Credentials</span>
               </button>
             </div>
@@ -283,7 +283,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Sarah Jenkins"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               />
             </div>
 
@@ -297,7 +297,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="sarah@company.com"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               />
             </div>
 
@@ -311,7 +311,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Minimum 6 characters"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               />
             </div>
 
@@ -322,7 +322,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               >
                 <option value="RECRUITER">Technical Recruiter</option>
                 <option value="HIRING_MANAGER">Hiring Manager</option>
@@ -334,7 +334,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
               >
                 <span>{loading ? "Provisioning..." : "Create Recruiter Account"}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -346,7 +346,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {tab === "forgot" && (
           <form onSubmit={handleForgotPassword} className="space-y-4">
             <div className="text-center pb-2">
-              <KeyRound className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
+              <KeyRound className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
               <h4 className="text-sm font-bold text-slate-900">Reset Account Access</h4>
               <p className="text-xs text-slate-500">
                 Enter your registered work email to generate an authorization reset token.
@@ -363,7 +363,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="recruiter@talentgraph.io"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               />
             </div>
 
@@ -371,7 +371,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
               >
                 <span>{loading ? "Generating..." : "Generate Reset Token"}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -393,7 +393,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {tab === "reset" && (
           <form onSubmit={handleResetPassword} className="space-y-4">
             <div className="text-center pb-2">
-              <KeyRound className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
+              <KeyRound className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
               <h4 className="text-sm font-bold text-slate-900">Set New Password</h4>
               <p className="text-xs text-slate-500">
                 Provide your security token and configure a new password.
@@ -410,7 +410,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={resetToken}
                 onChange={(e) => setResetToken(e.target.value)}
                 placeholder="Token string"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               />
             </div>
 
@@ -424,7 +424,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Minimum 6 characters"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
               />
             </div>
 
@@ -432,7 +432,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
               >
                 <span>{loading ? "Updating..." : "Update Password & Log In"}</span>
                 <ArrowRight className="w-4 h-4" />

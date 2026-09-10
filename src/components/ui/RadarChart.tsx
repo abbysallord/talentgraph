@@ -109,11 +109,11 @@ export const RadarChart: React.FC<RadarChartProps> = ({
             strokeDasharray="4 4"
           />
 
-          {/* Candidate Competency Polygon (Vibrant Indigo) */}
+          {/* Candidate Competency Polygon (Vibrant Emerald) */}
           <polygon
             points={candidatePoints}
-            fill="rgba(79, 70, 229, 0.22)"
-            stroke="#4f46e5"
+            fill="rgba(5, 150, 105, 0.22)"
+            stroke="#059669"
             strokeWidth={2.5}
             className="transition-all duration-500 ease-out"
           />
@@ -130,7 +130,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
                   cy={y}
                   r={isHovered ? 6 : 4}
                   fill="#ffffff"
-                  stroke="#4f46e5"
+                  stroke="#059669"
                   strokeWidth={2.5}
                   className="transition-all duration-200"
                 />
@@ -154,7 +154,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
                 textAnchor={Math.abs(Math.cos(angle)) < 0.1 ? 'middle' : Math.cos(angle) > 0 ? 'start' : 'end'}
                 dominantBaseline="central"
                 className={`text-[11px] font-bold tracking-tight transition-colors ${
-                  isHovered ? 'fill-indigo-600 font-extrabold' : 'fill-slate-600 font-medium'
+                  isHovered ? 'fill-emerald-600 font-extrabold' : 'fill-slate-600 font-medium'
                 }`}
               >
                 {d.axis} ({d.value}%)
@@ -167,7 +167,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
         {hoveredIndex !== null && (
           <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-xl shadow-lg border border-slate-700 pointer-events-none z-20 flex items-center space-x-2">
             <span className="font-bold">{data[hoveredIndex].axis}:</span>
-            <span className="text-indigo-300 font-mono font-bold">{data[hoveredIndex].value}%</span>
+            <span className="text-emerald-300 font-mono font-bold">{data[hoveredIndex].value}%</span>
             <span className="text-slate-400 text-2xs">(Benchmark: {data[hoveredIndex].benchmark ?? 75}%)</span>
           </div>
         )}
@@ -176,7 +176,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({
       {/* Chart Legend */}
       <div className="flex items-center space-x-6 mt-4 text-xs">
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-md bg-indigo-600" />
+          <div className="w-3 h-3 rounded-md bg-emerald-600" />
           <span className="font-bold text-slate-800">{candidateName} Signals</span>
         </div>
         <div className="flex items-center space-x-2">

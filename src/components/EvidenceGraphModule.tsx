@@ -45,7 +45,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
       case 'architecture':
         return { label: 'System Architecture', color: 'text-blue-800 bg-blue-50 border-blue-200', icon: Layers };
       case 'skill':
-        return { label: 'Verified Codebase Skill', color: 'text-indigo-800 bg-indigo-50 border-indigo-200', icon: Code2 };
+        return { label: 'Verified Codebase Skill', color: 'text-emerald-800 bg-emerald-50 border-emerald-200', icon: Code2 };
       case 'public_signal':
         return { label: 'Public Signal', color: 'text-purple-800 bg-purple-50 border-purple-200', icon: Network };
     }
@@ -57,7 +57,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
       <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
               <Network className="w-3.5 h-3.5" />
               <span>Evidence Graph Extraction</span>
             </div>
@@ -71,7 +71,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
 
           <button
             onClick={onProceedToScoring}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 shrink-0 cursor-pointer self-start md:self-auto"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 shrink-0 cursor-pointer self-start md:self-auto"
           >
             <span>Next: Run AI Reasoning Scorer</span>
             <ArrowRight className="w-4 h-4" />
@@ -92,14 +92,14 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                   onClick={() => setSelectedCandidate(cand)}
                   className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-indigo-50/50 border-indigo-600 shadow-xs ring-1 ring-indigo-500/20'
+                      ? 'bg-emerald-50/50 border-emerald-600 shadow-xs ring-1 ring-emerald-500/20'
                       : 'bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-bold text-slate-900 font-display">{cand.name}</span>
                     {isSelected ? (
-                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-600 text-white">
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-600 text-white">
                         Inspecting
                       </span>
                     ) : (
@@ -109,7 +109,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                   <div className="text-xs text-slate-700 font-medium truncate">{cand.role}</div>
                   <div className="text-[11px] text-slate-500 mt-1 truncate">{cand.education}</div>
                   <div className="mt-3 flex items-center justify-between text-[11px] border-t border-slate-200/80 pt-2">
-                    <span className="text-indigo-600 font-mono font-bold">
+                    <span className="text-emerald-600 font-mono font-bold">
                       {cand.evidenceGraph.length} Verified Nodes
                     </span>
                     <span className="text-slate-500 font-semibold">{cand.experienceYears}y exp</span>
@@ -126,7 +126,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
         {/* Candidate Profile Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
           <div className="flex items-center space-x-4">
-            <div className="w-14 h-14 rounded-2xl bg-indigo-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md shadow-indigo-600/20 shrink-0 font-display">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md shadow-emerald-600/20 shrink-0 font-display">
               {selectedCandidate.name.charAt(0)}
             </div>
             <div>
@@ -136,7 +136,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                   {selectedCandidate.location}
                 </span>
               </div>
-              <p className="text-xs text-indigo-600 font-semibold mt-0.5">
+              <p className="text-xs text-emerald-600 font-semibold mt-0.5">
                 {selectedCandidate.role} • {selectedCandidate.education}
               </p>
             </div>
@@ -161,7 +161,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                 rel="noreferrer"
                 className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-colors shadow-2xs"
               >
-                <Globe className="w-3.5 h-3.5 text-indigo-600" />
+                <Globe className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Live Portfolio</span>
               </a>
             )}
@@ -193,7 +193,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
                 onClick={() => setFilterCategory(tab.id)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   filterCategory === tab.id
-                    ? 'bg-indigo-600 text-white shadow-xs'
+                    ? 'bg-emerald-600 text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200'
                 }`}
               >
@@ -234,7 +234,7 @@ export const EvidenceGraphModule: React.FC<EvidenceGraphModuleProps> = ({
           </span>
           <button
             onClick={onProceedToScoring}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer self-end sm:self-auto"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer self-end sm:self-auto"
           >
             <span>Proceed to Step 3: Run AI Reasoning Scorer</span>
             <ArrowRight className="w-4 h-4" />

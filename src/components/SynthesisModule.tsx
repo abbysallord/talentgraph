@@ -41,7 +41,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
   if (!synthesis) {
     return (
       <div className="bg-white border border-slate-200 rounded-3xl p-16 text-center space-y-6 shadow-xs">
-        <div className="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center mx-auto text-indigo-600">
+        <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto text-emerald-600">
           <FileCheck className="w-8 h-8" />
         </div>
         <div className="space-y-2">
@@ -52,7 +52,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
         </div>
         <button
           onClick={onGenerateQuickSynthesis}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-2xl text-xs inline-flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/15 cursor-pointer"
+          className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-2xl text-xs inline-flex items-center space-x-2 transition-all shadow-md shadow-emerald-600/15 cursor-pointer"
         >
           <Sparkles className="w-4 h-4" />
           <span>Synthesize Benchmark Evaluation Now</span>
@@ -66,7 +66,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
       case 'STRONG_HIRE':
         return { label: 'STRONG HIRE — FAST TRACK', color: 'bg-emerald-50 text-emerald-800 border-emerald-200', icon: CheckCircle2 };
       case 'HIRE':
-        return { label: 'RECOMMENDED FOR HIRE', color: 'bg-indigo-50 text-indigo-800 border-indigo-200', icon: CheckCircle2 };
+        return { label: 'RECOMMENDED FOR HIRE', color: 'bg-teal-50 text-teal-800 border-teal-200', icon: CheckCircle2 };
       case 'RE_EVALUATE':
         return { label: 'REQUIRES SECOND TECHNICAL ROUND', color: 'bg-amber-50 text-amber-800 border-amber-200', icon: AlertTriangle };
       case 'REJECT':
@@ -95,7 +95,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
       <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Human-in-the-Loop Decision Gating</span>
             </div>
@@ -114,7 +114,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
               className={`px-5 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-2 transition-all cursor-pointer ${
                 isSaved
                   ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 cursor-default'
-                  : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-600/15'
+                  : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/15'
               }`}
             >
               <BookmarkPlus className="w-4 h-4" />
@@ -153,7 +153,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
             <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-400 block">
               Aggregate Synthesis Score
             </span>
-            <div className="text-3xl font-extrabold text-indigo-600 font-mono">
+            <div className="text-3xl font-extrabold text-emerald-600 font-mono">
               {synthesis.overallScore} <span className="text-sm text-slate-400 font-normal">/ 100</span>
             </div>
           </div>
@@ -172,10 +172,10 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
         {/* 4 Dimension Breakdown */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
           {[
-            { label: 'Technical Execution', score: synthesis.dimensionBreakdown.technicalExecution, color: 'bg-indigo-600' },
-            { label: 'System Architecture', score: synthesis.dimensionBreakdown.systemArchitecture, color: 'bg-blue-600' },
-            { label: 'Communication Clarity', score: synthesis.dimensionBreakdown.communicationClarity, color: 'bg-emerald-600' },
-            { label: 'Builder Ownership', score: synthesis.dimensionBreakdown.builderOwnership, color: 'bg-purple-600' },
+            { label: 'Technical Execution', score: synthesis.dimensionBreakdown.technicalExecution, color: 'bg-emerald-600' },
+            { label: 'System Architecture', score: synthesis.dimensionBreakdown.systemArchitecture, color: 'bg-teal-600' },
+            { label: 'Communication Clarity', score: synthesis.dimensionBreakdown.communicationClarity, color: 'bg-cyan-600' },
+            { label: 'Builder Ownership', score: synthesis.dimensionBreakdown.builderOwnership, color: 'bg-emerald-700' },
           ].map((dim, i) => (
             <div key={i} className="bg-white border border-slate-200 p-5 rounded-2xl space-y-2 shadow-2xs">
               <span className="text-xs text-slate-500 font-bold block truncate">{dim.label}</span>
@@ -191,7 +191,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
       {/* Recruiter Sign-Off Form */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xs">
         <div className="flex items-center space-x-2">
-          <UserCheck className="w-4 h-4 text-indigo-600" />
+          <UserCheck className="w-4 h-4 text-emerald-600" />
           <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-display">
             Recruiter Gating &amp; Sovereign Decision Sign-Off
           </h3>
@@ -207,7 +207,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
               value={recruiterNotes}
               onChange={(e) => setRecruiterNotes(e.target.value)}
               placeholder="e.g., Codebase evidence verified on GitHub. Live deployments confirmed on agronova.in. Approved to proceed directly to team pairing..."
-              className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 focus:outline-none leading-relaxed transition-all font-medium"
+              className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 focus:outline-none leading-relaxed transition-all font-medium"
             />
           </div>
 
@@ -222,7 +222,7 @@ export const SynthesisModule: React.FC<SynthesisModuleProps> = ({
               className={`w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center space-x-2 transition-all cursor-pointer ${
                 isSaved
                   ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                  : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-600/15'
+                  : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/15'
               }`}
             >
               <CheckCircle2 className="w-4 h-4" />

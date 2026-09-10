@@ -12,7 +12,7 @@ interface GlowingCardProps {
 export const GlowingCard: React.FC<GlowingCardProps> = ({
   children,
   className = '',
-  glowColor = 'rgba(79, 70, 229, 0.15)',
+  glowColor = 'rgba(5, 150, 105, 0.15)',
   onClick,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
